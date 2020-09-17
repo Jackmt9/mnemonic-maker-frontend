@@ -1,4 +1,4 @@
-# Mnemonic Maker 🧠
+# Mnemonic Maker 🧠 (FRONTEND)
 This project is designed to create [acrostic mnemonic devices](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.898.2352&rep=rep1&type=pdf) using song lyrics to help users better remember things.
 
 ### Table of Contents
