@@ -8,6 +8,8 @@ This project is designed to create [acrostic mnemonic devices](https://citeseerx
 
 - [Tools](#tools)
 
+- [Project Layout](#project-layout)
+
 ### Features
 - TO BE ADDED
 
@@ -24,3 +26,6 @@ To activate the frontend:
 - React.js
 
 - HTML/CSS
+
+### Project Layout
+To view this project outline and domain models, please refer to [Figma](https://www.figma.com/file/FTc7kkD4KNCCM48LuoAGWz/Mnemonic-Maker?node-id=0%3A1).
