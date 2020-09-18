@@ -1,13 +1,7 @@
 const BACKEND = "http://127.0.0.1:3001/";
 
 export const fetchMnemonic = (phrase) => {
-  return fetch(BACKEND + "mnemonic", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(phrase)
-  })
+  return fetch(BACKEND + `search/${phrase}`)
   .then(r => r.json())
 }
 
