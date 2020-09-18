@@ -29,7 +29,7 @@ export const fetchRegister = (user) => {
   }).then((r) => r.json());
 };
 
-export const fetchDeleteUser = (user) => {
+export const fetchDeleteUser = (token) => {
   return fetch(BACKEND + "register", {
     method: "DELETE",
     headers: {
