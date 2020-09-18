@@ -13,9 +13,9 @@ export default class Home extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault()
     fetchMnemonic(this.state.query)
-    .then(r => {
+    .then(r => 
       console.log(r)
-    })
+    )
   }
 
   render() {
