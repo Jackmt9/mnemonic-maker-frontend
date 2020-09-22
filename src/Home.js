@@ -1,8 +1,9 @@
-import React from "react";
+import React, { createElement } from "react";
 import { fetchMnemonic } from './services/utils'
 export default class Home extends React.Component {
   state = {
-      query: ''
+      query: '',
+      lyrics: ''
   }
   
   handleChange = (e)=>{
@@ -11,15 +12,30 @@ export default class Home extends React.Component {
   }
 
   handleSubmit = (e) => {
+    const results = document.getElementById('lyrics')
+    results.innerText = ''
     e.preventDefault()
+    const loading = document.createElement('img')
+    loading.src = 'https://media.giphy.com/media/DY2ujmJHaO9Vu/giphy.gif'
+    results.append(loading)
     fetchMnemonic(this.state.query)
-    .then(r => 
-      console.log(r)
+    .then(r => {
+      console.log(r.response)
+
+      this.setState({
+        lyrics: r.response.lyrics
+      })
+      results.innerText = ''
+      results.innerText = this.state.lyrics
+      // console.log(this.state.lyrics)
+      }
     )
+
   }
 
   render() {
     return (
+      <>
       <form onSubmit={this.handleSubmit}>
         <label>
           Enter Input:
@@ -27,6 +43,8 @@ export default class Home extends React.Component {
         </label>
         <input type='submit' value="Submit" />
       </form>
+      <div id='lyrics'></div>
+      </>
     );
   }
 }
