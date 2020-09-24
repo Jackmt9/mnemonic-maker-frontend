@@ -3,12 +3,14 @@ import { fetchMnemonic } from './services/utils'
 export default class Home extends React.Component {
   state = {
       query: '',
-      lyrics: ''
+      lyrics: '',
+      artist: ''
   }
   
   handleChange = (e)=>{
     // console.log(e.target.value)
-    this.setState({query: e.target.value})
+    this.setState({[e.target.name]: e.target.value})
+    console.log(this.state)
   }
   
   handleSubmit = (e) => {
@@ -51,14 +53,30 @@ export default class Home extends React.Component {
   render() {
     return (
       <>
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Enter Input:
-          <input type="text" value={this.state.query} onChange={this.handleChange} />
-        </label>
-        <input type='submit' value="Submit" />
-      </form>
-      <div id='lyrics'></div>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Enter Input:
+            <input
+              type="text"
+              name="query"
+              value={this.state.query}
+              onChange={this.handleChange}
+            />
+          </label>
+          <br />
+          <label>
+            Filter by Artist:
+            <input
+              type="text"
+              name="artist"
+              placeholder="Any"
+              value={this.state.artistFilter}
+              onChange={this.handleChange}
+            />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
+        <div id="lyrics"></div>
       </>
     );
   }
