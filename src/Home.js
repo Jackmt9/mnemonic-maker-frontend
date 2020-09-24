@@ -7,10 +7,10 @@ export default class Home extends React.Component {
   }
   
   handleChange = (e)=>{
-    console.log(e.target.value)
+    // console.log(e.target.value)
     this.setState({query: e.target.value})
   }
-
+  
   handleSubmit = (e) => {
     const lyricsDiv = document.getElementById('lyrics')
     lyricsDiv.innerText = ''
@@ -20,31 +20,33 @@ export default class Home extends React.Component {
     lyricsDiv.append(loading)
     fetchMnemonic(this.state.query)
     .then(r => {
-      console.log(r.response)
-      this.appendLyrics(r.response, lyricsDiv)
-
+      // console.log(r.response)
+      this.appendLyrics(r.response.lyrics, lyricsDiv)
+      
       // this.setState({
-      //   lyrics: r.response.lyrics
-      // })
-      // lyricsDiv.innerText = this.state.lyrics
+        //   lyrics: r.response.lyrics
+        // })
+        // lyricsDiv.innerText = this.state.lyrics
       }
-    )
-
-  }
-
-  appendLyrics = ({lyrics, matching_range}, lyricsDiv) => {
-    const parseRange = document.createRange();
-    const parse = Range.prototype.createContextualFragment.bind(parseRange);
-
-    let lyricsArray = lyrics.split(' ')
-    lyricsArray.splice(matching_range[1], 0, "</span>")
-    lyricsArray.splice(matching_range[0], 0, "<span class='matching-lyrics'>")
-    let lyricsWithSpan = lyricsArray.join(' ')
-  
-    console.log(lyricsArray)
-    lyricsDiv.innerHTML = parse(lyricsWithSpan)
-
-  }
+      )
+      
+    }
+    
+    appendLyrics = (lyrics) => {
+      const parseRange = document.createRange();
+      const parse = Range.prototype.createContextualFragment.bind(parseRange);
+      // debugger
+      //   let parsedLyrics = parse(lyrics);
+      //  let pTag = document.createElement('p')
+      //  pTag.innerHTML 
+      let lyricsDiv = document.getElementById('lyrics')
+  let parsedLyrics = parse(lyrics)
+  let moneyLyrics = parsedLyrics.children[0]
+  lyricsDiv.innerHTML = moneyLyrics.innerHTML
+      // let div = document.createElement('div')
+      // div.innerHTML = moneyLyrics
+      // console.log(lyricsDiv)
+    }
 
   render() {
     return (
