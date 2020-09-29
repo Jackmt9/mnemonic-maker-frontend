@@ -4,11 +4,10 @@ export default class Home extends React.Component {
   state = {
       query: '',
       lyrics: '',
-      artist: ''
+      artistFilter: 'ANY'
   }
   
   handleChange = (e)=>{
-    // console.log(e.target.value)
     this.setState({[e.target.name]: e.target.value})
     console.log(this.state)
   }
@@ -20,31 +19,23 @@ export default class Home extends React.Component {
     const loading = document.createElement('img')
     loading.src = 'https://media.giphy.com/media/DY2ujmJHaO9Vu/giphy.gif'
     lyricsDiv.append(loading)
-    fetchMnemonic(this.state.query)
+    fetchMnemonic(this.state.query, this.state.artistFilter)
     .then(r => {
-      // console.log(r.response)
       this.appendLyrics(r.response.lyrics, lyricsDiv)
-      
-      // this.setState({
-        //   lyrics: r.response.lyrics
-        // })
-        // lyricsDiv.innerText = this.state.lyrics
       }
-      )
-      
+      ) 
     }
     
-    appendLyrics = (lyrics) => {
+    appendLyrics = (lyrics, lyricsDiv) => {
       const parseRange = document.createRange();
       const parse = Range.prototype.createContextualFragment.bind(parseRange);
-      // debugger
+      debugger
       //   let parsedLyrics = parse(lyrics);
       //  let pTag = document.createElement('p')
-      //  pTag.innerHTML 
-      let lyricsDiv = document.getElementById('lyrics')
-  let parsedLyrics = parse(lyrics)
-  let moneyLyrics = parsedLyrics.children[0]
-  lyricsDiv.innerHTML = moneyLyrics.innerHTML
+      //  pTag.innerHTML
+      let parsedLyrics = parse(lyrics)
+      let moneyLyrics = parsedLyrics.children[0]
+      lyricsDiv.innerHTML = moneyLyrics.innerHTML
       // let div = document.createElement('div')
       // div.innerHTML = moneyLyrics
       // console.log(lyricsDiv)
@@ -68,7 +59,7 @@ export default class Home extends React.Component {
             Filter by Artist:
             <input
               type="text"
-              name="artist"
+              name="artistFilter"
               placeholder="Any"
               value={this.state.artistFilter}
               onChange={this.handleChange}

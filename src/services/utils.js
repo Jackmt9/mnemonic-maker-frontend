@@ -1,7 +1,7 @@
 const BACKEND = "http://127.0.0.1:3001/";
 
-export const fetchMnemonic = (phrase) => {
-  return fetch(BACKEND + `search/${phrase}`)
+export const fetchMnemonic = (phrase, artistFilter='ANY') => {
+  return fetch(BACKEND + `search/${phrase}/artists/${artistFilter}`)
   .then(r => r.json())
 }
 
