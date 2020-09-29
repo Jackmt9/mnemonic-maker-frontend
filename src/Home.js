@@ -8,7 +8,6 @@ export default class Home extends React.Component {
   }
   
   handleChange = (e)=>{
-    // console.log(e.target.value)
     this.setState({[e.target.name]: e.target.value})
     console.log(this.state)
   }
@@ -37,21 +36,19 @@ export default class Home extends React.Component {
         // })
         // lyricsDiv.innerText = this.state.lyrics
       }
-      )
-      
+      ) 
     }
     
-    appendLyrics = (lyrics) => {
+    appendLyrics = (lyrics, lyricsDiv) => {
       const parseRange = document.createRange();
       const parse = Range.prototype.createContextualFragment.bind(parseRange);
-      // debugger
+      debugger
       //   let parsedLyrics = parse(lyrics);
       //  let pTag = document.createElement('p')
-      //  pTag.innerHTML 
-      let lyricsDiv = document.getElementById('lyrics')
-  let parsedLyrics = parse(lyrics)
-  let moneyLyrics = parsedLyrics.children[0]
-  lyricsDiv.innerHTML = moneyLyrics.innerHTML
+      //  pTag.innerHTML
+      let parsedLyrics = parse(lyrics)
+      let moneyLyrics = parsedLyrics.children[0]
+      lyricsDiv.innerHTML = moneyLyrics.innerHTML
       // let div = document.createElement('div')
       // div.innerHTML = moneyLyrics
       // console.log(lyricsDiv)

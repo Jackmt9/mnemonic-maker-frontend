@@ -1,6 +1,10 @@
 const BACKEND = "http://127.0.0.1:3001/";
 
+<<<<<<< HEAD
 export const fetchMnemonic = (phrase, artistFilter) => {
+=======
+export const fetchMnemonic = (phrase, artistFilter='ANY') => {
+>>>>>>> bb524135ca1f4a2291a3fa971a18d8aa5ef05c25
   return fetch(BACKEND + `search/${phrase}/artists/${artistFilter}`)
   .then(r => r.json())
 }
