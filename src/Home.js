@@ -4,7 +4,7 @@ export default class Home extends React.Component {
   state = {
       query: '',
       lyrics: '',
-      artist: ''
+      artistFilter: ''
   }
   
   handleChange = (e)=>{
@@ -20,10 +20,17 @@ export default class Home extends React.Component {
     const loading = document.createElement('img')
     loading.src = 'https://media.giphy.com/media/DY2ujmJHaO9Vu/giphy.gif'
     lyricsDiv.append(loading)
-    fetchMnemonic(this.state.query)
+    fetchMnemonic(this.state.query, this.state.artistFilter)
     .then(r => {
+      console.log(r)
+      if(r.response.error){
+        alert(r.response.error);
+        lyricsDiv.innerText = 'Please enter another artist or phrase'
+      }
+      else{this.appendLyrics(r.response.lyrics, lyricsDiv)}
+      // debugger
       // console.log(r.response)
-      this.appendLyrics(r.response.lyrics, lyricsDiv)
+      
       
       // this.setState({
         //   lyrics: r.response.lyrics
@@ -68,7 +75,7 @@ export default class Home extends React.Component {
             Filter by Artist:
             <input
               type="text"
-              name="artist"
+              name="artistFilter"
               placeholder="Any"
               value={this.state.artistFilter}
               onChange={this.handleChange}
