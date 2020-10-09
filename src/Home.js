@@ -29,8 +29,10 @@ export default class Home extends React.Component {
     let songDiv = document.getElementById('song')
     songDiv.innerText = ''
     
+    let term = matchingPhrase
+
     let lyrics = document.createElement('p')
-    lyrics.innerText = song.lyrics
+    lyrics.innerHTML = song.lyrics.replace(new RegExp(term, "gi"), (match) => `<mark>${match}</mark>`)
 
     let title = document.createElement('h1')
     title.innerText = song.full_title
