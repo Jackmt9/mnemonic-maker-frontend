@@ -3,43 +3,40 @@ import { fetchMnemonic } from './services/utils'
 export default class Home extends React.Component {
   state = {
       query: '',
-      lyrics: '',
-      artistFilter: 'ANY'
   }
   
   handleChange = (e)=>{
     this.setState({[e.target.name]: e.target.value})
-    console.log(this.state)
   }
   
   handleSubmit = (e) => {
-    const lyricsDiv = document.getElementById('lyrics')
-    lyricsDiv.innerText = ''
     e.preventDefault()
-    const loading = document.createElement('img')
-    loading.src = 'https://media.giphy.com/media/DY2ujmJHaO9Vu/giphy.gif'
-    lyricsDiv.append(loading)
-    fetchMnemonic(this.state.query, this.state.artistFilter)
+    // const lyricsDiv = document.getElementById('lyrics')
+    // lyricsDiv.innerText = ''
+    // const loading = document.createElement('img')
+    // loading.src = 'https://media.giphy.com/media/DY2ujmJHaO9Vu/giphy.gif'
+    // lyricsDiv.append(loading)
+    fetchMnemonic(this.state.query)
     .then(r => {
-      this.appendLyrics(r.response.lyrics, lyricsDiv)
+      console.log(r)
+
+      this.appendLyrics(r.song, r.matching_phrase)
       }
-      ) 
-    }
+    ) 
+  }
     
-    appendLyrics = (lyrics, lyricsDiv) => {
-      const parseRange = document.createRange();
-      const parse = Range.prototype.createContextualFragment.bind(parseRange);
-      debugger
-      //   let parsedLyrics = parse(lyrics);
-      //  let pTag = document.createElement('p')
-      //  pTag.innerHTML
-      let parsedLyrics = parse(lyrics)
-      let moneyLyrics = parsedLyrics.children[0]
-      lyricsDiv.innerHTML = moneyLyrics.innerHTML
-      // let div = document.createElement('div')
-      // div.innerHTML = moneyLyrics
-      // console.log(lyricsDiv)
-    }
+  appendLyrics = (song, matchingPhrase) => {
+    let songDiv = document.getElementById('song')
+    songDiv.innerText = ''
+    
+    let lyrics = document.createElement('p')
+    lyrics.innerText = song.lyrics
+
+    let title = document.createElement('h1')
+    title.innerText = song.full_title
+
+    songDiv.append(title, lyrics)
+  }
 
   render() {
     return (
@@ -55,19 +52,9 @@ export default class Home extends React.Component {
             />
           </label>
           <br />
-          <label>
-            Filter by Artist:
-            <input
-              type="text"
-              name="artistFilter"
-              placeholder="Any"
-              value={this.state.artistFilter}
-              onChange={this.handleChange}
-            />
-          </label>
           <input type="submit" value="Submit" />
         </form>
-        <div id="lyrics"></div>
+        <div id="song"></div>
       </>
     );
   }
