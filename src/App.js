@@ -11,9 +11,9 @@ class App extends React.Component {
   render(){
   return (
     <Router history={createBrowserHistory()}>
-      <Route path="/signin" component={SignIn} />
-      <Route path="/register" component = {Register}/>
-      <Route path="/home" component = {Home}/>
+      {/* <Route path="/signin" component={SignIn} />
+      <Route path="/register" component = {Register}/> */}
+      <Route path="/" component = {Home}/>
     </Router>
   );
   }

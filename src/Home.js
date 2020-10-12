@@ -11,16 +11,16 @@ export default class Home extends React.Component {
   
   handleSubmit = (e) => {
     e.preventDefault()
-    // const lyricsDiv = document.getElementById('lyrics')
-    // lyricsDiv.innerText = ''
-    // const loading = document.createElement('img')
-    // loading.src = 'https://media.giphy.com/media/DY2ujmJHaO9Vu/giphy.gif'
-    // lyricsDiv.append(loading)
+    
     fetchMnemonic(this.state.query)
     .then(r => {
       console.log(r)
-
-      this.appendLyrics(r.song, r.matching_phrase)
+      if (r.error) {
+        let songDiv = document.getElementById('song')
+        songDiv.innerText = r.error
+      } else {
+        this.appendLyrics(r.song, r.matching_phrase)
+      }
       }
     ) 
   }
@@ -28,16 +28,24 @@ export default class Home extends React.Component {
   appendLyrics = (song, matchingPhrase) => {
     let songDiv = document.getElementById('song')
     songDiv.innerText = ''
-    
-    let term = matchingPhrase
 
     let lyrics = document.createElement('p')
-    lyrics.innerHTML = song.lyrics.replace(new RegExp(term, "gi"), (match) => `<mark>${match}</mark>`)
 
-    let title = document.createElement('h1')
+    song.lyrics.split('\n').forEach(line => {
+      lyrics.innerHTML += line.replace(matchingPhrase, (match) => `<mark>${match}</mark>`)
+      lyrics.innerHTML += '<br/>'
+    })
+
+    let title = document.createElement('a')
     title.innerText = song.full_title
+    title.href = song.url
 
-    songDiv.append(title, lyrics)
+    let songImage = document.createElement('img')
+    songImage.src = song.image
+    songImage.alt = 'Album Cover'
+
+
+    songDiv.append(title, songImage, lyrics)
   }
 
   render() {
