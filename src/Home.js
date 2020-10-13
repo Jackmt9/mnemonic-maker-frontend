@@ -20,43 +20,23 @@ export default class Home extends React.Component {
   renderSong = ()=>{
   }
   handleSubmit = (e, query) => {
-    // e.preventDefault()
-    console.log("query:", query)
      fetchMnemonic(query).then((r) => {
-      //  console.log('fetched', r.song.lyrics);
        if (r.error) {
          this.setState({error: r.error})
          let songDiv = document.getElementById("song");
          songDiv.innerText = r.error;
        } else {
          this.setState({currentSong: r.song, matchingPhrase: r.matching_phrase, error: null});
-         console.log("state", this.state.currentSong.lyrics)
+        //  console.log("state", this.state.currentSong.lyrics)
        }
      });
     e.preventDefault()
-    setTimeout( ()=> {
-        this.setState({ handleSearch: true });
-    }, 10);
-    this.refreshPage()
     };
   render() {
     return (
       <>
-        {/* <form onSubmit={this.handleSubmit}>
-          <label>
-            Enter Input:
-            <input
-              type="text"
-              name="query"
-              value={this.state.query}
-              onChange={this.handleChange}
-            />
-          </label>
-          <br />
-          <input type="submit" value="Submit" />
-        </form> */}
-            <SearchBar handleSubmit = {this.handleSubmit}/>
-        {this.state.handleSearch && this.state.currentSong ? 
+         <SearchBar handleSubmit = {this.handleSubmit}/>
+        {this.state.currentSong ? 
         (
           <div>
           {console.log('hit')}

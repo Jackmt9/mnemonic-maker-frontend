@@ -4,6 +4,11 @@ export default class Song extends React.Component {
 componentDidMount = ()=>{
         this.appendInfo(this.props.song, this.props.matchingPhrase)
 }
+componentDidUpdate = ()=>{
+        let songHeaderDiv = document.getElementById("song-header");
+        songHeaderDiv.innerHTML = ''
+        this.appendInfo(this.props.song, this.props.matchingPhrase)
+}
   appendInfo = (song, matchingPhrase) => {
     let songHeaderDiv = document.getElementById("song-header");
     let title = document.createElement("a");
@@ -13,9 +18,8 @@ componentDidMount = ()=>{
    songImage.src = song.image;
    songImage.height = 200
    songImage.width = 200
-songHeaderDiv.append(title, songImage);
+    songHeaderDiv.append(title, songImage);
   };
-
   render() {
     return (
       <>

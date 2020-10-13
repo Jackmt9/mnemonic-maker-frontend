@@ -5,6 +5,9 @@ export default class Song extends React.Component {
 componentDidMount = ()=>{
     this.appendLyrics(this.props.lyrics, this.props.matchingPhrase);
 }
+componentDidUpdate = ()=>{
+    this.appendLyrics(this.props.lyrics, this.props.matchingPhrase);
+}
   appendLyrics = (songLyrics, matchingPhrase) => {
     let songDiv = document.getElementById("song");
     songDiv.innerText = "";

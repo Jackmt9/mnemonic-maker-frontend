@@ -6,8 +6,8 @@ export default class Home extends React.Component {
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value});
   };
-  handleSubmit = (e)=>{
-      e.preventDefault()
+  handleSubmit=(e)=>{
+    //   e.preventDefault()
       this.props.handleSubmit(this.state.query)
   }
   render() {
