@@ -20,13 +20,18 @@ componentDidUpdate = ()=>{
    songImage.width = 200
     songHeaderDiv.append(title, songImage);
   };
+  styles ={
+    background: 'black', 
+    height: 200,
+  }
   render() {
     return (
       <>
-        <div>
+        <div style = {this.styles}>
           <div id="song-header"></div>
         </div>
       </>
-    );
+
+);
   }
 }

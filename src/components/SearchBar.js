@@ -9,12 +9,14 @@ export default class Home extends React.Component {
   handleSubmit=(e)=>{
     //   e.preventDefault()
     console.log('hit')
-      this.props.handleSubmit(this.state.query)
+      this.props.handleSubmit(this.state.query, 0)
+  }
+  styles = {
+    background: 'yellow'
   }
   render() {
     return (
-      <>
-        <form onSubmit= {e=>this.props.handleSubmit(e, this.state.query)}>
+        <form onSubmit= {e=>this.props.handleSubmit(e, this.state.query)} style = {this.styles}>
           <label>
             Enter Input:
             <input
@@ -27,7 +29,6 @@ export default class Home extends React.Component {
           <br />
           <input type="submit" value="Submit" />
         </form>
-      </>
     );
   }
 }
