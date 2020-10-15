@@ -1,9 +1,8 @@
 // import Card from "react-bootstrap/Card";
-import React, {Button} from 'react';
+import React from 'react';
 import { Card, CardHeader, CardBody, CardFooter } from "react-simple-card";
 export default function SummaryCard (props){
     const styles = {
-    //   height: 200,
       width: 200,
       background: "80A1C1",
     };
