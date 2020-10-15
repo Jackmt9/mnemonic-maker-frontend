@@ -1,6 +1,6 @@
 import React from 'react';
-import SignIn from './SignIn'
-import Register from './Register'
+import Login from './components/Login'
+import Register from './components/Register'
 import { Router, Route } from "react-router"
 import 'history'; 
 import { createBrowserHistory } from "history";
@@ -11,9 +11,9 @@ class App extends React.Component {
   render(){
   return (
     <Router history={createBrowserHistory()}>
-      {/* <Route path="/signin" component={SignIn} />
-      <Route path="/register" component = {Register}/> */}
-      <Route path="/" component = {Home}/>
+      <Route path="/register" component={Register} />
+      <Route path="/login" component = {Login}/>
+      <Route path="/home" component = {Home}/>
     </Router>
   );
   }

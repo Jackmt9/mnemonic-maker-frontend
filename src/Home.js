@@ -6,6 +6,7 @@ import SongHeader from './components/SongHeader'
 import SearchBar from './components/SearchBar'
 import SummaryCard from "./components/SummaryCard";
 export default class Home extends React.Component {
+
   state = {
     query: "",
     currentArtist: 'any',
@@ -15,23 +16,26 @@ export default class Home extends React.Component {
     currentSongIndex: 0,
     error: null,
   };
-componentDidMount = ()=>{
-let logoImage = document.createElement('img')
-logoImage.src = logo
-if(!this.state.currentSong){
-document.getElementById('logo-container').append(logoImage)
-}
-else{
-  document.getElementById("logo-container").innerHTML = ''
-}
-}
+
+  componentDidMount = ()=>{
+    let logoImage = document.createElement('img')
+    logoImage.src = logo
+    if(!this.state.currentSong){
+      document.getElementById('logo-container').append(logoImage)
+    }
+    else{
+    document.getElementById("logo-container").innerHTML = ''
+    }
+  }
+
   refreshPage = () => {
     this.setState({ handleSearch: false });
   };
+
   handleSubmit = (e, query, bookmark=0, artist) => {
-  console.log("artist:", artist)
     this.setState({ query: query, currentArtist: artist});
     fetchMnemonic(query, bookmark, artist).then((r) => {
+      console.log(r)
       if (r.error) {
         this.setState({ error: r.error });
         let errorDiv = document.getElementById("error-div");
@@ -47,10 +51,9 @@ else{
       }
     });
     e.preventDefault();
-    console.log(this.state);
-  };
+  }
+
   render() {
-    console.log("query:", this.state.query);
     return (
       <>
         <SearchBar handleSubmit={this.handleSubmit} />
