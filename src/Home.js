@@ -3,6 +3,7 @@ import { fetchMnemonic } from './services/utils'
 import SongLyrics from './components/SongLyrics'
 import SongHeader from './components/SongHeader'
 import SearchBar from './components/SearchBar'
+import SummaryCard from "./components/SummaryCard";
 export default class Home extends React.Component {
   state = {
       query: '',
@@ -11,15 +12,13 @@ export default class Home extends React.Component {
       matchingPhrase: '',
       error: null
   }
-  handleChange = (e)=>{
-    this.setState({[e.target.name]: e.target.value})
-  }
   refreshPage = ()=>{
     this.setState({handleSearch: false});
   }
   renderSong = ()=>{
   }
   handleSubmit = (e, query) => {
+        this.setState({ query: query});
      fetchMnemonic(query).then((r) => {
        if (r.error) {
          this.setState({error: r.error})
@@ -33,14 +32,18 @@ export default class Home extends React.Component {
     e.preventDefault()
     };
   render() {
+    console.log("query:", this.state.query)
     return (
       <>
-         <SearchBar handleSubmit = {this.handleSubmit}/>
-        {this.state.currentSong ? 
-        (
+        <SearchBar handleSubmit={this.handleSubmit} />
+        {this.state.currentSong ? (
           <div>
-          {console.log('hit')}
-            <SongHeader song = {this.state.currentSong} matchingPhrase = {this.state.matchingPhrase}/>
+            {console.log("hit")}
+            <SongHeader
+              song={this.state.currentSong}
+              matchingPhrase={this.state.matchingPhrase}
+            />
+            <SummaryCard query={this.state.query} matchingPhrase= {this.state.matchingPhrase} />
             <SongLyrics
               query={this.state.query}
               handleSearch={this.state.handleSearch}

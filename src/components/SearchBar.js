@@ -8,6 +8,7 @@ export default class Home extends React.Component {
   };
   handleSubmit=(e)=>{
     //   e.preventDefault()
+    console.log('hit')
       this.props.handleSubmit(this.state.query)
   }
   render() {
