@@ -9,12 +9,12 @@ export default class NavBar extends React.Component {
     return (
       <div class="topnav">
         <a class="active" href="#home">
-          Home
+          Mnemonic Maker
         </a>
-        <a href="#news">Search</a>
-        <a href="#contact">Playlist</a>
-        <a href="#about">About</a>
-        <a href="#about">Login</a>
+        <a href="/search">Search</a>
+        <a href="/playlist">Playlist</a>
+        <a href="/about">About</a>
+        <a href="/login">Login</a>
       </div>
     );
   }

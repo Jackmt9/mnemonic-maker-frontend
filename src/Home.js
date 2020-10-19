@@ -3,7 +3,7 @@ import logo from './assets/home-logo.jpg'
 import { fetchMnemonic } from './services/utils'
 import SongLyrics from './components/SongLyrics'
 import SongHeader from './components/SongHeader'
-import SearchBar from './components/SearchBar'
+import SearchBar from './components/SearchBar/SearchBar'
 import SummaryCard from "./components/SummaryCard";
 export default class Home extends React.Component {
 

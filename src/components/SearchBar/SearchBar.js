@@ -1,4 +1,5 @@
 import React from "react";
+import './SearchBar.css'
 export default class Home extends React.Component {
   state = {
     query: "",
@@ -7,9 +8,6 @@ export default class Home extends React.Component {
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value});
   };
-  styles = {
-    background: '#37C1A8'
-  }
   render() {
     return (
       <form
@@ -18,7 +16,7 @@ export default class Home extends React.Component {
         style={this.styles}
       >
         <label>
-          Stuff to remember...:
+          Phrase to remember...:
           <input
             type="text"
             name="query"
@@ -28,7 +26,7 @@ export default class Home extends React.Component {
         </label>
         <br />
         <label>
-          Enter Artist:
+          By Specific Artist:
           <input
             placeholder="any"
             type="text"
