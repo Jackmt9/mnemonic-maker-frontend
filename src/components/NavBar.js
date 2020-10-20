@@ -1,4 +1,3 @@
-import { doc } from 'prettier'
 import React from 'react'
 
 export default class NavBar extends React.Component {
@@ -7,8 +6,8 @@ export default class NavBar extends React.Component {
   };
   render() {
     return (
-      <div class="topnav">
-        <a class="active" href="#home">
+      <div className="topnav">
+        <a className="active" href="#home">
           Mnemonic Maker
         </a>
         <a href="/search">Search</a>

@@ -14,12 +14,13 @@ export default function SummaryCard (props){
               <CardBody>Your Input: {props.query}</CardBody>
               <CardBody>Matching Phrase:{props.matchingPhrase} </CardBody>
               <iframe
+              title= "youtube-vid"
                 width="560"
                 height="315"
                 src={`https://www.youtube.com/embed/${props.youtubeId}`}
-                frameborder="0"
+                frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
+                allowFullScreen
               ></iframe>
               <CardFooter>Play Song:</CardFooter>
             </Card>
