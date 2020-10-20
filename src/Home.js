@@ -43,6 +43,7 @@ export default class Home extends React.Component {
       } else {
         this.setState({
           currentSong: r.song,
+          youtubeId: r.youtube_id,
           matchingPhrase: r.matching_phrase,
           error: null,
           currentSongIndex: r.current_song_index
@@ -80,6 +81,7 @@ export default class Home extends React.Component {
             />
             <SummaryCard
               query={this.state.query}
+              youtubeId = {this.state.youtubeId}
               matchingPhrase={this.state.matchingPhrase}
             />
             <SongLyrics

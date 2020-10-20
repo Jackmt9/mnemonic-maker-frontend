@@ -6,12 +6,21 @@ export default function SummaryCard (props){
       width: 200,
       background: "80A1C1",
     };
+    console.log("youtube id",props.youtubeId)
         return (
           <>
             <Card style={styles} bgColor="grey">
               <CardHeader>Mnemonic Summary</CardHeader>
               <CardBody>Your Input: {props.query}</CardBody>
               <CardBody>Matching Phrase:{props.matchingPhrase} </CardBody>
+              <iframe
+                width="560"
+                height="315"
+                src={`https://www.youtube.com/embed/${props.youtubeId}`}
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
               <CardFooter>Play Song:</CardFooter>
             </Card>
           </>
