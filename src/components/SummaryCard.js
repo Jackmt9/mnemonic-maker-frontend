@@ -6,7 +6,7 @@ export default function SummaryCard (props){
       width: 200,
       background: "80A1C1",
     };
-    console.log("youtube id",props.youtubeId)
+    // console.log("youtube id",props.youtubeId)
         return (
           <>
             <Card style={styles} bgColor="grey">

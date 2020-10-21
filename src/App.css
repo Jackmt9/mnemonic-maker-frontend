@@ -67,4 +67,14 @@ nav{
   color: white;
 }
 
+.results {
+  background-color: #37C1A8;
+}
 
+.youtube-frame{
+  /* float: right; */
+  /* clear: right; */
+  display: flex;
+  flex: 33%;
+  top: -40px; 
+}

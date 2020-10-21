@@ -1,10 +1,9 @@
 import React from "react";
 import logo from './assets/home-logo.jpg'
 import { fetchMnemonic } from './services/utils'
-import SongLyrics from './components/SongLyrics'
-import SongHeader from './components/SongHeader'
 import SearchBar from './components/SearchBar/SearchBar'
 import SummaryCard from "./components/SummaryCard";
+import Result from "./components/Result";
 export default class Home extends React.Component {
 
   state = {
@@ -16,18 +15,8 @@ export default class Home extends React.Component {
     currentSongIndex: 0,
     orderMatters: true,
     error: null,
+    resultDisplayed: false
   };
-
-  componentDidMount = ()=>{
-    let logoImage = document.createElement('img')
-    logoImage.src = logo
-    if(!this.state.currentSong){
-      document.getElementById('logo-container').append(logoImage)
-    }
-    else{
-    document.getElementById("logo-container").innerHTML = ''
-    }
-  }
 
   refreshPage = () => {
     this.setState({ handleSearch: false });
@@ -47,7 +36,8 @@ export default class Home extends React.Component {
           youtubeId: r.youtube_id,
           matchingPhrase: r.matching_phrase,
           error: null,
-          currentSongIndex: r.current_song_index
+          currentSongIndex: r.current_song_index,
+          resultDisplayed: true
         });
         document.getElementById("logo-container").innerHTML = "";
       }
@@ -63,7 +53,7 @@ export default class Home extends React.Component {
         <div id="logo-container"></div>
         {this.state.currentSong && !this.state.error ? (
           <div id="full-body-div">
-            <>
+            {/* <>
               <button
                 onClick={(e) =>
                   this.handleSubmit(
@@ -75,23 +65,31 @@ export default class Home extends React.Component {
               >
                 Find another matching phrase
               </button>
-            </>
-            <SongHeader
-              song={this.state.currentSong}
-              matchingPhrase={this.state.matchingPhrase}
+            </> */}
+
+
+            <Result 
+            song={this.state.currentSong}
+            matchingPhrase={this.state.matchingPhrase}
+            query={this.state.query}
+            handleSearch={this.state.handleSearch}
+            lyrics={this.state.currentSong.lyrics}
+            youtubeId={this.state.youtubeId}
+            resultDisplayed={this.state.resultDisplayed}
+            // handleSubmit={this.handleSubmit(e, this.state.query,
+            //   this.state.currentSongIndex)}
             />
-            <SummaryCard
-              query={this.state.query}
-              youtubeId = {this.state.youtubeId}
-              matchingPhrase={this.state.matchingPhrase}
-            />
-            <SongLyrics
-              query={this.state.query}
-              handleSearch={this.state.handleSearch}
-              lyrics={this.state.currentSong.lyrics}
-              matchingPhrase={this.state.matchingPhrase}
-            />
+
+            <button
+              onClick={(e) => this.handleSubmit(e, this.state.query,
+                  this.state.currentSongIndex)
+              }
+            >
+              Find another matching phrase
+            </button>
+
           </div>
+
         ) : null}
       </>
     );
