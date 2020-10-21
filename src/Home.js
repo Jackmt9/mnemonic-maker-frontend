@@ -14,6 +14,7 @@ export default class Home extends React.Component {
     currentSong: null,
     matchingPhrase: "",
     currentSongIndex: 0,
+    orderMatters: true,
     error: null,
   };
 
@@ -32,9 +33,9 @@ export default class Home extends React.Component {
     this.setState({ handleSearch: false });
   };
 
-  handleSubmit = (e, query, bookmark=0, artist) => {
+  handleSubmit = (e, query, bookmark=0, artist, order) => {
     this.setState({ query: query, currentArtist: artist});
-    fetchMnemonic(query, bookmark, artist).then((r) => {
+    fetchMnemonic(query, bookmark, artist, order).then((r) => {
       console.log(r)
       if (r.error) {
         this.setState({ error: r.error });
