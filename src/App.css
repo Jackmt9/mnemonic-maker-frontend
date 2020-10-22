@@ -71,10 +71,7 @@ nav{
   background-color: #37C1A8;
 }
 
-.youtube-frame{
-  /* float: right; */
-  /* clear: right; */
-  display: flex;
-  flex: 33%;
-  top: -40px; 
+.youtube-frame {
+  display: inline;
+  align-content: right;
 }
