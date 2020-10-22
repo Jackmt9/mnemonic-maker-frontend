@@ -67,13 +67,6 @@ export default class Result extends React.Component {
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                 />
-              {/* <button
-                onClick={(e) =>
-                  this.props.handleSubmit(e)
-                }
-              >
-                Find another matching phrase
-              </button> */}
             </div>
         )
     }
