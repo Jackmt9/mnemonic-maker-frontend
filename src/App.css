@@ -79,7 +79,7 @@ nav{
 
 #star-saver{
   cursor: default;
-  font-size: 40px;
+  font-size: 30px;
   /* top: -100; */
 }
 .query-summary{
@@ -95,9 +95,12 @@ nav{
 #next-page-button{
   margin-left: 500px;
 }
-.lyrics-and-image-block{
+.title-and-image-block{
   display: inline-block;
 }
 #song-image-container{
+    /* margin-left: 50px; */
+    height: '40px';
+    width: '40px';
 }
 

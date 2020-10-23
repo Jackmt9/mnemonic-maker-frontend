@@ -53,8 +53,8 @@ export default class Result extends React.Component {
        titleHeader.append(title)
         let songImage = document.createElement('img')
         songImage.src = song.image;
-        songImage.height = 200
-        songImage.width = 200
+        songImage.height = 40
+        songImage.width = 40
         songImageDiv.append(songImage);
     };
 
@@ -71,6 +71,7 @@ export default class Result extends React.Component {
                 {this.props.saved ? "★" : "☆"}
               </p>
             }
+            <div id="song-image-container" className= "query-summary"></div>
             <div id="input-phrase-match" className="query-summary">
               Your Input:
               {"  " + this.props.query}
@@ -93,12 +94,8 @@ export default class Result extends React.Component {
             >
               Next Result ⮕{" "}
             </button>
-            <h2 id= 'title'></h2>
-            <div id="song" className="lyrics-and-image-block"></div>
-            <div
-              id="song-image-container"
-              className="lyrics-and-image-block"
-            ></div>
+            <h2 id="title"></h2>
+
             <iframe
               title="youtube-vid"
               width="426"
@@ -109,6 +106,7 @@ export default class Result extends React.Component {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />
+            <div id="song"></div>
           </div>
         );
     }

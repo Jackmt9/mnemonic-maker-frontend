@@ -13,9 +13,9 @@ class App extends React.Component {
   return (
     <Router history={createBrowserHistory()}>
       <Route path="/" component={NavBar} />
+      <Route path="/search" component={Home} />
       <Route path="/register" component={Register} />
       <Route path="/login" component={Login} />
-      <Route path="/search" component={Home} />
     </Router>
   );
   }
