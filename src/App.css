@@ -72,20 +72,7 @@ nav{
   display: 'grid';
 }
 
-/* .youtube-frame{ */
-  /* float: right; */
-  /* clear: right; */
-  /* display: flex;
-  flex: 33%;
-  top: -40px;  */
-/* } */
-
-.inline-block {
-  display: 'inline-block';
-  /* background-color: black; */
-}
-#song {
-  width: '10px';
-  /* display: inline-block; */
-  /* background-color: black; */
+.youtube-frame {
+  display: inline;
+  align-content: right;
 }

@@ -56,36 +56,21 @@ export default class Result extends React.Component {
 
     render(){
 
-        return (
-          <div ref={this.boxRef} className="results">
-            <div id="song-header"></div>
-            <div
-              id="song"
-              style={{ width: "300px", display: "inline-flex", left: 700 }}
-            ></div>
-            <div
-              className="inline-block"
-              style={{ display: "inline-block" }}
-            >
-              <iframe
-                title="youtube-vid"
-                width="426"
-                height="240"
-                className="youtube-frame"
-                src={`https://www.youtube.com/embed/${this.props.youtubeId}`}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
+        return(
+            <div ref={this.boxRef} className="results">
+                <div id="song-header"></div>
+                <div id="song"></div>
+                <iframe
+                    title= "youtube-vid"
+                    width="426"
+                    height="240"
+                    className="youtube-frame"
+                    src={`https://www.youtube.com/embed/${this.props.youtubeId}`}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                />
             </div>
-            {/* <button
-                onClick={(e) =>
-                  this.props.handleSubmit(e)
-                }
-              >
-                Find another matching phrase
-              </button> */}
-          </div>
-        );
+        )
     }
 }
