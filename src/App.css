@@ -77,6 +77,27 @@ nav{
   align-content: right;
 }
 
-.star-saver{
+#star-saver{
   cursor: default;
+  font-size: 40px;
+  /* top: -100; */
 }
+.query-summary{
+  display: inline-block;
+}
+.results{
+  margin-left: 100px;
+  margin-right: 100px;
+}
+.home{
+  background-color: #282c34;
+}
+#next-page-button{
+  margin-left: 500px;
+}
+.lyrics-and-image-block{
+  display: inline-block;
+}
+#song-image-container{
+}
+
