@@ -76,3 +76,7 @@ nav{
   display: inline;
   align-content: right;
 }
+
+.star-saver{
+  cursor: default;
+}

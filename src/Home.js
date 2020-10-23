@@ -14,12 +14,14 @@ export default class Home extends React.Component {
     currentSongIndex: 0,
     orderMatters: true,
     error: null,
+    saved: false,
     resultDisplayed: false
   };
 
   // toggleScroll = ()=>{
   //   this.setState({resultDisplayed: !this.state.resultDisplayed});
   // }
+
 
   handleSubmit = (e, query, bookmark=0, artist, order) => {
     this.setState({ query: query, currentArtist: artist});
@@ -49,6 +51,10 @@ export default class Home extends React.Component {
     e.preventDefault();
   }
 
+  toggleSave = ()=>{
+    this.setState({saved: !this.state.saved})
+  }
+
   render() {
     return (
       <>
@@ -73,6 +79,8 @@ export default class Home extends React.Component {
 
 
             <Result 
+            saved = {this.state.saved}
+            toggleSave = {this.toggleSave}
             song={this.state.currentSong}
             matchingPhrase={this.state.matchingPhrase}
             query={this.state.query}
