@@ -69,12 +69,23 @@ nav{
 
 .results {
   background-color: #37C1A8;
+  display: 'grid';
 }
 
-.youtube-frame{
+/* .youtube-frame{ */
   /* float: right; */
   /* clear: right; */
-  display: flex;
+  /* display: flex;
   flex: 33%;
-  top: -40px; 
+  top: -40px;  */
+/* } */
+
+.inline-block {
+  display: 'inline-block';
+  /* background-color: black; */
+}
+#song {
+  width: '10px';
+  /* display: inline-block; */
+  /* background-color: black; */
 }

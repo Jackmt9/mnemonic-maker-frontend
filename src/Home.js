@@ -9,7 +9,6 @@ export default class Home extends React.Component {
   state = {
     query: "",
     currentArtist: 'any',
-    handleSearch: false,
     currentSong: null,
     matchingPhrase: "",
     currentSongIndex: 0,
@@ -18,9 +17,9 @@ export default class Home extends React.Component {
     resultDisplayed: false
   };
 
-  refreshPage = () => {
-    this.setState({ handleSearch: false });
-  };
+  // toggleScroll = ()=>{
+  //   this.setState({resultDisplayed: !this.state.resultDisplayed});
+  // }
 
   handleSubmit = (e, query, bookmark=0, artist, order) => {
     this.setState({ query: query, currentArtist: artist});
@@ -38,8 +37,13 @@ export default class Home extends React.Component {
           error: null,
           currentSongIndex: r.current_song_index,
           resultDisplayed: true
-        });
+        })
         document.getElementById("logo-container").innerHTML = "";
+        const toggleScroll = setInterval(() => {
+          this.setState({ resultDisplayed: false });
+          console.log(this.state.resultDisplayed);
+          clearInterval(toggleScroll)
+        }, 1000);
       }
     });
     e.preventDefault();
