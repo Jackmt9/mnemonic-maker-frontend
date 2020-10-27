@@ -7,3 +7,32 @@ export const fetchMnemonic = (phrase, bookmark, artist, order) => {
   return fetch(BACKEND + `query/${phrase}/${bookmark}/artist/${artist}/order/${order}`)
   .then(r => r.json())
 }
+
+export const loginUser = (user_params) => {
+  console.log(`Logging in user ${user_params.email}...`)
+
+  return fetch( BACKEND + 'login', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(user_params)
+  })
+  .then( r => {
+    r.json() 
+    console.log(`Login fetch returned with status ${r.status}`)
+  })
+}
+
+export const registerUser = (user_params) => {
+  console.log(`Registering user ${user_params.email}...`)
+  return fetch( BACKEND + 'users', {
+      method: 'POST',
+      headers: {
+          'content-type': 'application/json'
+      },
+      body: JSON.stringify(user_params)
+  })
+  .then(r => {
+    r.json()
+    console.log(`Register fetch returned with status ${r.status}`)
+  })
+}
