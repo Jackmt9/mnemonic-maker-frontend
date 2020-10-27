@@ -11,14 +11,14 @@ export const fetchMnemonic = (phrase, bookmark, artist, order) => {
 export const loginUser = (user_params) => {
   console.log(`Logging in user ${user_params.email}...`)
 
-  return fetch( BACKEND + 'login', {
+  return fetch( BACKEND + 'users/login', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(user_params)
   })
   .then( r => {
-    r.json() 
     console.log(`Login fetch returned with status ${r.status}`)
+    return r.json() 
   })
 }
 
@@ -32,7 +32,7 @@ export const registerUser = (user_params) => {
       body: JSON.stringify(user_params)
   })
   .then(r => {
-    r.json()
     console.log(`Register fetch returned with status ${r.status}`)
+    return r.json()
   })
 }

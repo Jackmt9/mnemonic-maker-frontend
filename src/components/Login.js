@@ -1,31 +1,56 @@
 import React from "react";
-export default function SignIn(){
-  const [username, setUsername] = React.useState("");
-  const [password, setPassword] = React.useState("");
-        
-  return (
-    <div>
-      <form>
-        <label>
-          Username:
-          <input
-            type="text"
-            name="username"
-            value={username}
-            onChange={(e)=>setUsername(e.target.value)}
-          />
-        </label>
-        <label>
-          Password:
-          <input
-            type="text"
-            name="password"
-            value={password}
-            onChange={e=>setPassword(e.target.value)}
-          />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
-    </div>
-  );
+import {loginUser} from '../services/utils'
+export default class Login extends React.Component {
+
+
+  state = {
+      email: "",
+      password: "",
+      // auth: false
+  }
+
+  handleChange = ({target}) => {
+      this.setState({
+          [target.name]: target.value
+      })
+  }
+
+  handleSubmit = (evt) => {
+      evt.preventDefault()
+      loginUser(this.state)
+      .then((loggedInUser) => {
+        this.handleResponse(loggedInUser)
+      })
+  }
+
+  handleResponse = (resp) => {
+      if (resp.message) {
+          alert(resp.message)
+      } else {
+          localStorage.token = resp.token
+          console.log(resp)
+          this.setState({
+              auth: true
+          })
+      }
+  }
+
+
+
+
+  render() {
+      return(
+          <form onSubmit={this.handleSubmit}>
+              <h1>Login</h1>
+              <label htmlFor="email">email:</label>
+              <input type="text" autoComplete="off" name="email" value={this.state.email} onChange={this.handleChange}/>
+              <br/>
+              <label htmlFor="password">Password:</label>
+              <input type="password" autoComplete="off" name="password" value={this.state.value} onChange={this.handleChange}/>
+              <br/>
+              <input type="submit" value="Submit"/>
+              {/* {this.state.auth? <Redirect to='/search'/> : ''} */}
+          </form>
+      )
+  }
 }
