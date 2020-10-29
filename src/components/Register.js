@@ -1,6 +1,7 @@
 import React from "react";
 import {registerUser} from '../services/utils'
 export default class Register extends React.Component {
+  
   state = {
     first_name: '',
     last_name: '',

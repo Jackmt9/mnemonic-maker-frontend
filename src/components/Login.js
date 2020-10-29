@@ -6,8 +6,7 @@ class Login extends React.Component {
 
   state = {
       email: "",
-      password: "",
-      // auth: false
+      password: ""
   }
 
   handleChange = ({target}) => {
@@ -22,7 +21,6 @@ class Login extends React.Component {
       .then((loggedInUser) => {
         this.handleResponse(loggedInUser)
       })
-      this.props.propsAddUser(this.state)
   }
 
   handleResponse = (resp) => {
@@ -30,15 +28,10 @@ class Login extends React.Component {
           alert(resp.message)
       } else {
           localStorage.token = resp.token
+          this.props.propsAddUser(resp.user)
           console.log(resp)
-          this.setState({
-              auth: true
-          })
       }
   }
-
-
-
 
   render() {
       return(
@@ -50,26 +43,23 @@ class Login extends React.Component {
               <label htmlFor="password">Password:</label>
               <input type="password" autoComplete="off" name="password" value={this.state.value} onChange={this.handleChange}/>
               <br/>
-              <input type="submit" value="Submit"/>
-              {/* {this.state.auth? <Redirect to='/search'/> : ''} */}
+              <input type="submit" value="Login"/>
           </form>
       )
   }
 }
 
+// Redux interactions below this line
+
 let addUser = (user) => {
   return {
-    type: "ADD_USER",
+    type: "LOGIN",
     payload: user
   }
 }
 
-
 let mapDispatchToProps = {
-propsAddUser: addUser
+    propsAddUser: addUser
 }
 
-// mapDispatchToProps is a POJO that will be merged as props
-
 export default connect(null, mapDispatchToProps)(Login);
-// export default connect(null, {addOnePet})(PetForm)

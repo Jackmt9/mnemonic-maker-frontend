@@ -11,7 +11,7 @@ let initialState = {
     id: null,
     firstName: null,
     lastName: null,
-    emailAddress: null,
+    email: null,
   },
   search: {
     query: null,
@@ -31,12 +31,17 @@ let initialState = {
 let reducer = (state = initialState, action) => {
 
   switch (action.type) {
-    case 'ADD_USER':
+    case 'LOGIN':
       let userToBeAdded = action.payload
-      // let copyOfUser = [...state.user, userToBeAdded]
       return {
         ...state, 
-        user:userToBeAdded
+        user: userToBeAdded
+      }
+
+    case 'LOGOUT':
+      return {
+        ...state, 
+        user: state.user
       }
 
     default:

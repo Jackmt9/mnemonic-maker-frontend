@@ -1,18 +1,10 @@
 import React from 'react'
-
-export default class Logout extends React.Component{
-//     refreshPage=()=>{
-//     window.location.reload(false);
-//   }
+import {connect} from 'react-redux'
+class Logout extends React.Component{
 
     componentWillMount = ()=>{
-        // return new Promise(()=>{
-
-        //     localStorage.clear()
-        // })
-        // .then(
-        //    this.refreshPage()
-        // )
+        localStorage.clear()
+        this.props.propsRemoveUser()
     }
 
     render(){
@@ -24,3 +16,17 @@ export default class Logout extends React.Component{
     }
 
 }
+
+// Redux interactions below this line
+
+let removeUser = () => {
+  return {
+    type: "LOGOUT",
+  }
+}
+
+let mapDispatchToProps = {
+    propsRemoveUser: removeUser
+}
+
+export default connect(null, mapDispatchToProps)(Logout);
