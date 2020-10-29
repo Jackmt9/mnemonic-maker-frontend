@@ -1,7 +1,7 @@
 import React from "react";
 import {loginUser} from '../services/utils'
-export default class Login extends React.Component {
 
+export default class Login extends React.Component {
 
   state = {
       email: "",

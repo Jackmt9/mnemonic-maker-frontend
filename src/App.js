@@ -1,5 +1,6 @@
 import React from 'react';
 import Login from './components/Login'
+import Logout from './components/Logout'
 import Register from './components/Register'
 import { Router, Route } from "react-router"
 import 'history'; 
@@ -12,10 +13,12 @@ class App extends React.Component {
   render(){
   return (
     <Router history={createBrowserHistory()}>
+
       <Route path="/" component={NavBar} />
       <Route path="/search" component={Home} />
       <Route path="/register" component={Register} />
       <Route path="/login" component={Login} />
+      <Route path="/logout" component={Logout} />
     </Router>
   );
   }
