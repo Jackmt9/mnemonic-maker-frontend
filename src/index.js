@@ -7,27 +7,36 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 let initialState = {
-  pets: [
-    {
-      id: 29,
-      name: "Heihei",
-      breed: "Chicken"
-    }
-  ]
-}
+  user: {
+    id: null,
+    firstName: null,
+    lastName: null,
+    emailAddress: null,
+  },
+  search: {
+    query: null,
+    currentArtist: null,
+    currentSong: null,
+    matchingPhrase: null,
+    currentSongIndex: null,
+    orderMatters: true,
+    error: null,
+    saved: false,
+    resultDisplayed: false,
+  },
+};
 
 
 // RETURN VALUE OF REDUCER BECOMES THE NEW STATE
 let reducer = (state = initialState, action) => {
 
   switch (action.type) {
-    case "ADD_ONE_PET":
-      let thePetToBeAdded = action.payload
-      let copyOfPets = [...state.pets, thePetToBeAdded]
-
-      return {
-        ...state,
-        pets: copyOfPets
+    case 'ADD_USER':
+      let userToBeAdded = action.payload
+      // let copyOfUser = [...state.user, userToBeAdded]
+      return {
+        ...state, 
+        user:userToBeAdded
       }
 
     default:

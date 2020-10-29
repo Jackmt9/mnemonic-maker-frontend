@@ -1,7 +1,8 @@
 import React from "react";
+import {connect} from 'react-redux'
 import {loginUser} from '../services/utils'
 
-export default class Login extends React.Component {
+class Login extends React.Component {
 
   state = {
       email: "",
@@ -21,6 +22,7 @@ export default class Login extends React.Component {
       .then((loggedInUser) => {
         this.handleResponse(loggedInUser)
       })
+      this.props.propsAddUser(this.state)
   }
 
   handleResponse = (resp) => {
@@ -54,3 +56,20 @@ export default class Login extends React.Component {
       )
   }
 }
+
+let addUser = (user) => {
+  return {
+    type: "ADD_USER",
+    payload: user
+  }
+}
+
+
+let mapDispatchToProps = {
+propsAddUser: addUser
+}
+
+// mapDispatchToProps is a POJO that will be merged as props
+
+export default connect(null, mapDispatchToProps)(Login);
+// export default connect(null, {addOnePet})(PetForm)
