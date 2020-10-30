@@ -10,23 +10,23 @@ import {BrowserRouter} from 'react-router-dom'
 let initialState = {
   user: {
     id: null,
-    firstName: null,
-    lastName: null,
+    first_name: null,
+    last_name: null,
     email: null
   },
   search: {
-    matchingPhrase: null,
-    currentSongIndex: null,
-    orderMatters: true,
+    matching_phrase: null,
+    current_song_index: null,
+    order_matters: true,
     song: {
-      fullTitle: null, 
+      full_title: null, 
       id: null, 
       lyrics: null, 
-      artistId: null, 
+      artist_id: null, 
       url: null, 
       image: null, 
       title: null,
-      youtubeId: null
+      youtube_id: null
     }
   },
 };
@@ -47,8 +47,8 @@ let reducer = (state = initialState, action) => {
         ...state, 
         user: {
           id: null,
-          firstName: null,
-          lastName: null,
+          first_name: null,
+          last_name: null,
           email: null,
         }
       }

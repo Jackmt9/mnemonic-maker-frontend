@@ -30,22 +30,22 @@ export default class Result extends React.Component {
       //   // this.appendInfo(this.props.song, this.props.matchingPhrase)
       // }
       
-    //   appendLyrics = (songLyrics, matchingPhrase) => {
-    //     let songDiv = document.getElementById("song");
-    //     songDiv.innerText = "";
+      appendLyrics = () => {
+        let songDiv = document.getElementById("song");
+        songDiv.innerText = "";
       
-    //     let lyrics = document.createElement("p");
+        let lyrics = document.createElement("p");
       
-    //     songLyrics.split("\n").forEach((line) => {
-    //       lyrics.innerHTML += line.replace(
-    //         matchingPhrase,
-    //         (match) => `<mark>${match}</mark>`
-    //       );
-    //       lyrics.innerHTML += "<br/>";
-    //     });
+        this.props.globalState.search.song.lyrics.split("\n").forEach((line) => {
+          lyrics.innerHTML += line.replace(
+            this.props.globalState.search.matching_phrase,
+            (match) => `<mark>${match}</mark>`
+          );
+          lyrics.innerHTML += "<br/>";
+        });
 
-    //     songDiv.append(lyrics);
-    // };
+        songDiv.append(lyrics);
+    };
 
     // appendInfo = (song) => {
     //     let songImageDiv = document.getElementById("song-image-container");
@@ -61,37 +61,35 @@ export default class Result extends React.Component {
     //     songImageDiv.append(songImage);
     // };
 
+    componentDidMount = ()=>{
+      this.appendLyrics()
+    }
     render(){
+      // debugger
         return (
           <div ref={this.boxRef} className="results">
-            hello
-              {/* <p onClick={this.props.toggleSave}
+            
+              <p onClick={this.props.toggleSave}
                 id="star-saver"
                 className="query-summary">
                 {this.props.saved ? "★" : "☆"}
               </p>
-            <div id="song-image-container" className= "query-summary">
-              <a href={this.props.globalState.song.url}>{this.props.globalState.song.fullTitle}</a>
+             <div id="song-image-container" className= "query-summary">
+               <img width = '40' height = '40' src = {this.props.globalState.search.song.image} alt = {this.props.globalState.search.song.full_title}/>
             </div>
+              <a href={this.props.globalState.search.song.url} >
+                {this.props.globalState.search.song.full_title}</a>
             <div id="input-phrase-match" className="query-summary">
               Your Input:
-              {"  " + this.props.query}
+              {"  " + this.props.globalState.search.query}
               <br />
               Matching Phrase:
-              {" " + this.props.matchingPhrase}
+              {" " + this.props.globalState.search.matchingPhrase}
             </div>
             <button
               id="next-page-button"
               className="query-summary"
-              onClick={(e) =>
-                this.props.goToNextResult(
-                  e,
-                  this.props.query,
-                  this.props.currentSongIndex,
-                  this.props.artist,
-                  this.props.order
-                )
-              }>
+              >
               Next Result ⮕{" "}
             </button>
             <h2 id="title"></h2>
@@ -101,12 +99,12 @@ export default class Result extends React.Component {
               width="426"
               height="240"
               className="youtube-frame"
-              src={`https://www.youtube.com/embed/${this.props.globalState.youtubeId}`}
+              src={`https://www.youtube.com/embed/${this.props.globalState.search.song.youtube_id}`}
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
-            />
-            <div id="song"></div> */}
+            /> 
+            <div id="song"></div> 
           </div>
         );
     }

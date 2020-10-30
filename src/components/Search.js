@@ -28,7 +28,6 @@ class Search extends React.Component {
   handleSubmit = (e, query, bookmark = 0, artist, order) => {
     this.setState({ query: query, currentArtist: artist });
     fetchMnemonic(query, bookmark, artist, order).then((r) => {
-      debugger
       // console.log(r)
       if (r.error) {
         this.setState({ error: r.error });
@@ -64,27 +63,10 @@ class Search extends React.Component {
         {this.state.error ? <div id="error-div"></div> : null}
         <div id="logo-container"></div>
           <div id="full-body-div">
-            {this.props.globalState.search.song.fullTitle?
+            {this.props.globalState.search.song.full_title?
 
-            // <Result
-            //   // artist={this.state.artist}
-            //   // order={this.state.orderMatters}
-            //   // goToNextResult={this.goToNextResult}
-            //   // currentSongIndex={this.state.currentSongIndex}
-            //   // className="results"
-            //   // saved={this.state.saved}
-            //   // toggleSave={this.toggleSave}
-            //   // song={this.state.currentSong}
-            //   // matchingPhrase={this.state.matchingPhrase}
-            //   // query={this.state.query}
-            //   // handleSearch={this.state.handleSearch}
-            //   // lyrics={this.state.currentSong.lyrics}
-            //   // youtubeId={this.state.youtubeId}
-            //   // resultDisplayed={this.state.resultDisplayed}
-            //   // handleSubmit={this.handleSubmit(e, this.state.query,
-            //   //   this.state.currentSongIndex)}
-            // />
-            console.log("hit")
+            <Result
+            globalState = {this.props.globalState}/>
             :
             null  
           }
