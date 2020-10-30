@@ -5,7 +5,7 @@ import Register from './components/Register'
 import NavBar from './components/NavBar'
 // import About from './components/About'
 import './App.css';
-import Home from './Home'
+import Search from './components/Search'
 import {Switch, Route, withRouter} from 'react-router-dom'
 import {stayLoggedIn} from './services/utils'
 import {connect} from 'react-redux'
@@ -21,7 +21,6 @@ class App extends React.Component {
       })
     }
   }
-
   renderLogin = () => {
     return <Login handleLogin={ (r) => this.props.mountUser(r) } redirect={ () => this.props.history.push("/") }/>
   }
@@ -30,13 +29,17 @@ class App extends React.Component {
     return <Logout handleLogout={ this.props.unmountUser }/>
   }
 
+  renderSearch = () => {
+    return <Search handleSearch={(r) => this.props.mountSearch(r)}/>
+  }
+
   render(){
     return (
       <div className="App">
         <NavBar />
         <Switch>
           {!localStorage.token?
-          <Route path="/login" render={ this.renderLogin } />
+          <Route path="/login" render={this.renderLogin} />
           :
           <Route path="/login" render={ () => this.props.history.push('/') } />
         }
@@ -44,7 +47,7 @@ class App extends React.Component {
           <Route path="/register" component={ Register } />
           {/* <Route path="/about" component={ About } /> */}
           {/* <Route path="/playlists" component={ Playlists } /> */}
-          <Route path="/" exact component={ Home } />
+          <Route path="/" exact render={ this.renderSearch } />
           <Route render={ () => <p>Page not found</p> } />
         </Switch>
       </div>

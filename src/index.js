@@ -15,15 +15,19 @@ let initialState = {
     email: null
   },
   search: {
-    query: null,
-    currentArtist: null,
-    currentSong: null,
     matchingPhrase: null,
     currentSongIndex: null,
     orderMatters: true,
-    error: null,
-    saved: false,
-    resultDisplayed: false
+    song: {
+      fullTitle: null, 
+      id: null, 
+      lyrics: null, 
+      artistId: null, 
+      url: null, 
+      image: null, 
+      title: null,
+      youtubeId: null
+    }
   },
 };
 
@@ -48,6 +52,13 @@ let reducer = (state = initialState, action) => {
           email: null,
         }
       }
+
+    case 'MOUNT_SEARCH':
+      let search = action.payload
+      return {
+        ...state,
+        search: search
+      }
 
     default:
       return state
