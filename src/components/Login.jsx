@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from 'react-redux'
 import {loginUser} from '../services/utils'
 
-class Login extends React.Component {
+export default class Login extends React.Component {
 
   state = {
       email: "",
@@ -25,11 +25,13 @@ class Login extends React.Component {
 
   handleResponse = (resp) => {
       if (resp.message) {
-          alert(resp.message)
-      } else {
-          localStorage.token = resp.token
-          this.props.propsAddUser(resp.user)
-          console.log(resp)
+        alert(resp.message)
+      } 
+      else {
+        localStorage.token = resp.token
+        this.props.handleLogin(resp)
+        this.props.redirect()
+        console.log(resp)
       }
   }
 
@@ -48,18 +50,3 @@ class Login extends React.Component {
       )
   }
 }
-
-// Redux interactions below this line
-
-let addUser = (user) => {
-  return {
-    type: "LOGIN",
-    payload: user
-  }
-}
-
-let mapDispatchToProps = {
-    propsAddUser: addUser
-}
-
-export default connect(null, mapDispatchToProps)(Login);

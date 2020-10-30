@@ -1,3 +1,7 @@
+import React from "react";
+import {connect} from 'react-redux'
+
+
 const BACKEND = "http://127.0.0.1:3001/";
 
 export const fetchMnemonic = (phrase, bookmark, artist, order) => {
@@ -11,7 +15,7 @@ export const fetchMnemonic = (phrase, bookmark, artist, order) => {
 export const loginUser = (user_params) => {
   console.log(`Logging in user ${user_params.email}...`)
 
-  return fetch( BACKEND + 'users/login', {
+  return fetch( BACKEND + 'login', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(user_params)
@@ -35,4 +39,13 @@ export const registerUser = (user_params) => {
     console.log(`Register fetch returned with status ${r.status}`)
     return r.json()
   })
+}
+
+export const stayLoggedIn = (token) => {
+  return fetch( BACKEND + 'stay_logged_in', {
+    headers: {
+      "Authorization": token
+    }
+  })
+  .then(r => r.json())
 }

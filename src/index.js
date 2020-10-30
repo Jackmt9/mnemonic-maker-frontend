@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import {BrowserRouter} from 'react-router-dom'
 
 let initialState = {
   user: {
@@ -26,19 +27,18 @@ let initialState = {
   },
 };
 
-
 // RETURN VALUE OF REDUCER BECOMES THE NEW STATE
 let reducer = (state = initialState, action) => {
 
   switch (action.type) {
-    case 'LOGIN':
-      let userToBeAdded = action.payload
+    case 'MOUNT_USER':
+      let user = action.payload.user
       return {
-        ...state, 
-        user: userToBeAdded
-      }
+          ...state, 
+          user: user
+      }
 
-    case 'LOGOUT':
+    case 'UNMOUNT_USER':
       return {
         ...state, 
         user: state.user
@@ -51,9 +51,12 @@ let reducer = (state = initialState, action) => {
 }
 
 let storeObj = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+
 ReactDOM.render(
   <Provider store={storeObj}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root')
 );

@@ -1,8 +1,6 @@
 import React from "react";
-import logo from './assets/home-logo.jpg'
 import { fetchMnemonic } from './services/utils'
 import SearchBar from './components/SearchBar/SearchBar'
-import SummaryCard from "./components/SummaryCard";
 import Result from "./components/Result";
 export default class Home extends React.Component {
   state = {
