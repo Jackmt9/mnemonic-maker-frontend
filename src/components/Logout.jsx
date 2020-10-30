@@ -6,7 +6,7 @@ export default class Logout extends React.Component{
         localStorage.clear()
         this.props.handleLogout()
     }
-
+    
     render(){
         return(
             <div>

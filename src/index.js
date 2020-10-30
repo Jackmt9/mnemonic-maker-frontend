@@ -12,7 +12,7 @@ let initialState = {
     id: null,
     firstName: null,
     lastName: null,
-    email: null,
+    email: null
   },
   search: {
     query: null,
@@ -23,7 +23,7 @@ let initialState = {
     orderMatters: true,
     error: null,
     saved: false,
-    resultDisplayed: false,
+    resultDisplayed: false
   },
 };
 
@@ -41,7 +41,12 @@ let reducer = (state = initialState, action) => {
     case 'UNMOUNT_USER':
       return {
         ...state, 
-        user: state.user
+        user: {
+          id: null,
+          firstName: null,
+          lastName: null,
+          email: null,
+        }
       }
 
     default:

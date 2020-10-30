@@ -23,7 +23,7 @@ class App extends React.Component {
   }
 
   renderLogin = () => {
-    return <Login handleLogin={ (r) => this.props.mountUser(r)} redirect={ () => this.props.history.push("/") }/>
+    return <Login handleLogin={ (r) => this.props.mountUser(r) } redirect={ () => this.props.history.push("/") }/>
   }
 
   renderLogout = () => {
@@ -35,8 +35,12 @@ class App extends React.Component {
       <div className="App">
         <NavBar />
         <Switch>
+          {!localStorage.token?
           <Route path="/login" render={ this.renderLogin } />
-          <Route path="/logout" render={ this.renderLogout } />
+          :
+          <Route path="/login" render={ () => this.props.history.push('/') } />
+        }
+        <Route path="/logout" render={ this.renderLogout } />
           <Route path="/register" component={ Register } />
           {/* <Route path="/about" component={ About } /> */}
           {/* <Route path="/playlists" component={ Playlists } /> */}
@@ -47,12 +51,6 @@ class App extends React.Component {
     );
   }
 }
-
-// export default App;
-
-
-
-
 
 
 let componentWithRouterProps = withRouter(App)
