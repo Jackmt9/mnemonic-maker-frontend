@@ -4,6 +4,9 @@ import {connect} from 'react-redux'
 
 export default class Result extends React.Component {
 
+  state = {
+    saved: false
+  }
     // constructor(props) {
     //     super(props);
     //     this.boxRef = React.createRef();
@@ -29,7 +32,9 @@ export default class Result extends React.Component {
       //   songTitle.innerHTML = "";
       //   // this.appendInfo(this.props.song, this.props.matchingPhrase)
       // }
-      
+      toggleSave = ()=>{
+        this.setState({saved: !this.state.saved})
+      }
       appendLyrics = () => {
         let songDiv = document.getElementById("song");
         songDiv.innerText = "";
@@ -47,32 +52,18 @@ export default class Result extends React.Component {
         songDiv.append(lyrics);
     };
 
-    // appendInfo = (song) => {
-    //     let songImageDiv = document.getElementById("song-image-container");
-    //     let title = document.createElement("a");
-    //     title.innerText = song.full_title;
-    //     title.href = song.url;
-    //    let titleHeader = document.getElementById('title')
-    //    titleHeader.append(title)
-    //     let songImage = document.createElement('img')
-    //     songImage.src = song.image;
-    //     songImage.height = 40
-    //     songImage.width = 40
-    //     songImageDiv.append(songImage);
-    // };
-
     componentDidMount = ()=>{
+
       this.appendLyrics()
     }
     render(){
       // debugger
         return (
           <div ref={this.boxRef} className="results">
-            
-              <p onClick={this.props.toggleSave}
+              <p onClick={this.toggleSave}
                 id="star-saver"
                 className="query-summary">
-                {this.props.saved ? "★" : "☆"}
+                {this.state.saved ? "★" : "☆"}
               </p>
              <div id="song-image-container" className= "query-summary">
                <img width = '40' height = '40' src = {this.props.globalState.search.song.image} alt = {this.props.globalState.search.song.full_title}/>
@@ -81,10 +72,10 @@ export default class Result extends React.Component {
                 {this.props.globalState.search.song.full_title}</a>
             <div id="input-phrase-match" className="query-summary">
               Your Input:
-              {"  " + this.props.globalState.search.query}
+              {"  " + this.props.globalState.search.input_phrase}
               <br />
               Matching Phrase:
-              {" " + this.props.globalState.search.matchingPhrase}
+              {" " + this.props.globalState.search.matching_phrase}
             </div>
             <button
               id="next-page-button"

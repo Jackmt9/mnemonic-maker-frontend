@@ -15,6 +15,7 @@ let initialState = {
     email: null
   },
   search: {
+    input_phrase: null,
     matching_phrase: null,
     current_song_index: null,
     order_matters: true,

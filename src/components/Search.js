@@ -28,7 +28,7 @@ class Search extends React.Component {
   handleSubmit = (e, query, bookmark = 0, artist, order) => {
     this.setState({ query: query, currentArtist: artist });
     fetchMnemonic(query, bookmark, artist, order).then((r) => {
-      // console.log(r)
+      console.log(r)
       if (r.error) {
         this.setState({ error: r.error });
         let errorDiv = document.getElementById("error-div");
@@ -85,7 +85,7 @@ let mapStateToProps = (globalState) => {
   }
 }
 
-let functionThatAddsProps = connect(mapStateToProps)
+// let functionThatAddsProps = connect(mapStateToProps)
 
 export default connect(mapStateToProps)(Search)
 
