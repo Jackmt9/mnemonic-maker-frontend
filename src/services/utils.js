@@ -46,7 +46,7 @@ export const stayLoggedIn = (token) => {
   .then(r => r.json())
 }
 
-export const saveBookMark = (playlist_id, song_id, input_phrase, matching_phrase, token)=>{
+export const saveBookMark = (playlist_id = 1, song_id, input_phrase, matching_phrase, token)=>{
 
   console.log("token", token)
 
