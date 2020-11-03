@@ -11,7 +11,7 @@ class Search extends React.Component {
     currentSong: null,
     matchingPhrase: "",
     currentSongIndex: 0,
-    orderMatters: true,
+    order_matters: true,
     error: null,
     saved: false,
     resultDisplayed: false,
@@ -21,13 +21,15 @@ class Search extends React.Component {
   //   this.setState({resultDisplayed: !this.state.resultDisplayed});
   // }
 
-  goToNextResult = (e, query, bookmark = 0, artist, order) => {
+  goToNextResult = (e, query, current_song_index = 0, artist, order_matters) => {
     console.log("next result");
-    this.handleSubmit(e, query, bookmark, artist, order);
+    this.handleSubmit(e, query, current_song_index, artist, order_matters);
   };
-  handleSubmit = (e, query, bookmark = 0, artist, order) => {
+  handleSubmit = (e, query, current_song_index = 0, artist, order_matters) => {
     this.setState({ query: query, currentArtist: artist });
-    fetchMnemonic(query, bookmark, artist, order).then((r) => {
+    // console.log('nowhere man log', query, this.props.globalState.search)
+    console.log('fetching like a dog', query, current_song_index, artist, order_matters )
+    fetchMnemonic(query, current_song_index, artist, order_matters).then((r) => {
       console.log(r)
       if (r.error) {
         this.setState({ error: r.error });
@@ -40,7 +42,6 @@ class Search extends React.Component {
           resultDisplayed: true,
         });
         this.props.handleSearch(r)
-        
         document.getElementById("logo-container").innerHTML = "";
         const toggleScroll = setInterval(() => {
           this.setState({ resultDisplayed: false });
@@ -62,15 +63,14 @@ class Search extends React.Component {
         <SearchBar handleSubmit={this.handleSubmit} />
         {this.state.error ? <div id="error-div"></div> : null}
         <div id="logo-container"></div>
-          <div id="full-body-div">
-            {this.props.globalState.search.song.full_title?
-
+        <div id="full-body-div">
+          {this.props.globalState.search.song.full_title ? (
             <Result
-            globalState = {this.props.globalState}/>
-            :
-            null  
-          }
-          </div>
+              handleSubmit={this.handleSubmit}
+              globalState={this.props.globalState}
+            />
+          ) : null}
+        </div>
       </div>
     );
   }

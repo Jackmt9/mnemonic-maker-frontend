@@ -1,14 +1,11 @@
-import React from "react";
-import {connect} from 'react-redux'
-
 
 const BACKEND = "http://127.0.0.1:3001/";
 
-export const fetchMnemonic = (phrase, bookmark, artist, order) => {
+export const fetchMnemonic = (phrase, current_song_index, artist, order) => {
   if(!artist){
     artist = 'any'
   }
-  return fetch(BACKEND + `query/${phrase}/${bookmark}/artist/${artist}/order/${order}`)
+  return fetch(BACKEND + `query/${phrase}/${current_song_index}/artist/${artist}/order/${order}`)
   .then(r => r.json())
 }
 
@@ -48,4 +45,8 @@ export const stayLoggedIn = (token) => {
     }
   })
   .then(r => r.json())
+}
+
+export const saveBookMark = (song_id, input_phrase, matching_phrase)=>{
+    console.log(song_id, input_phrase, matching_phrase)
 }

@@ -1,7 +1,7 @@
 // import Card from "react-bootstrap/Card";
 import React from 'react';
 import { Card, CardHeader, CardBody, CardFooter } from "react-simple-card";
-export default function SummaryCard (props){
+export default function Bookmark (props){
     const styles = {
       width: 200,
       background: "80A1C1",

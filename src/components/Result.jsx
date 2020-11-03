@@ -1,6 +1,7 @@
 import React from "react";
 import '../App.css'
 import {connect} from 'react-redux'
+import { saveBookMark } from '../services/utils'
 
 export default class Result extends React.Component {
 
@@ -21,10 +22,11 @@ export default class Result extends React.Component {
     //   debugger
     //   }
       
-      // componentDidUpdate = ()=>{
-      //   if (this.props.resultDisplayed) {
-      //     this.boxRef.current.scrollIntoView({ behavior: "smooth" });
-      //   }
+      componentDidUpdate = ()=>{
+            this.appendLyrics()
+        if (this.props.resultDisplayed) {
+          this.boxRef.current.scrollIntoView({ behavior: "smooth" });
+        }}
       //   // this.appendLyrics(this.props.lyrics, this.props.matchingPhrase);
       //   let songImageDiv = document.getElementById("song-image-container");
       //   let songTitle = document.getElementById("title");
@@ -34,7 +36,12 @@ export default class Result extends React.Component {
       // }
       toggleSave = ()=>{
         this.setState({saved: !this.state.saved})
+          if(!this.state.saved){
+            // console.log('saving bookmark')
+            saveBookMark(this.props.globalState.search.song.id, this.props.globalState.search.input_phrase, this.props.globalState.search.matching_phrase)
+          }
       }
+      
       appendLyrics = () => {
         let songDiv = document.getElementById("song");
         songDiv.innerText = "";
@@ -52,9 +59,8 @@ export default class Result extends React.Component {
         songDiv.append(lyrics);
     };
 
-    componentDidMount = ()=>{
-
-      this.appendLyrics()
+      componentDidMount = ()=>{
+        //  console.log("result global state lyrics", this.props.globalState.search.song.lyrics)
     }
     render(){
       // debugger
@@ -80,6 +86,7 @@ export default class Result extends React.Component {
             <button
               id="next-page-button"
               className="query-summary"
+              onClick = {(e)=>this.props.handleSubmit(e, this.props.globalState.search.input_phrase, this.props.globalState.search.current_song_index, this.props.globalState.search.song.artist_id, this.props.globalState.search.order_matters)}
               >
               Next Result ⮕{" "}
             </button>

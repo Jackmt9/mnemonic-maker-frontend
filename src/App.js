@@ -2,6 +2,7 @@ import React from 'react';
 import Login from './components/Login'
 import Logout from './components/Logout'
 import Register from './components/Register'
+import Playlists from './components/Playlists'
 import NavBar from './components/NavBar'
 // import About from './components/About'
 import './App.css';
@@ -46,7 +47,7 @@ class App extends React.Component {
         <Route path="/logout" render={ this.renderLogout } />
           <Route path="/register" component={ Register } />
           {/* <Route path="/about" component={ About } /> */}
-          {/* <Route path="/playlists" component={ Playlists } /> */}
+          <Route path="/playlists" component={ Playlists } />
           <Route path="/" exact render={ this.renderSearch } />
           <Route render={ () => <p>Page not found</p> } />
         </Switch>
