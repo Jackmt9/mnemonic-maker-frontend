@@ -27,18 +27,11 @@ export default class Result extends React.Component {
         if (this.props.resultDisplayed) {
           this.boxRef.current.scrollIntoView({ behavior: "smooth" });
         }}
-      //   // this.appendLyrics(this.props.lyrics, this.props.matchingPhrase);
-      //   let songImageDiv = document.getElementById("song-image-container");
-      //   let songTitle = document.getElementById("title");
-      //   songImageDiv.innerHTML = "";
-      //   songTitle.innerHTML = "";
-      //   // this.appendInfo(this.props.song, this.props.matchingPhrase)
-      // }
+
       toggleSave = ()=>{
         this.setState({saved: !this.state.saved})
           if(!this.state.saved){
-            // console.log('saving bookmark')
-            saveBookMark(this.props.globalState.search.song.id, this.props.globalState.search.input_phrase, this.props.globalState.search.matching_phrase)
+            saveBookMark(1, this.props.globalState.search.song.id, this.props.globalState.search.input_phrase, this.props.globalState.search.matching_phrase, localStorage.token)
           }
       }
       
