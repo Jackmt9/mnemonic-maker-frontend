@@ -46,7 +46,7 @@ export const stayLoggedIn = () => {
   .then(r => r.json())
 }
 
-export const saveBookMark = (playlist_id = 1, song_id, input_phrase, matching_phrase)=>{
+export const saveBookmark = (playlist_id = 1, song_id, input_phrase, matching_phrase)=>{
 
   let bookmark_params = {
     playlist_id: playlist_id,

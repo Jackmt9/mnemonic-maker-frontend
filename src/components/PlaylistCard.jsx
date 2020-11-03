@@ -1,5 +1,6 @@
 import React from 'react';
 import {getPlaylist} from '../services/utils'
+import BookmarkCard from './BookmarkCard'
 
 export default class PlaylistCard extends React.Component {
     componentWillMount = () => {
@@ -17,7 +18,6 @@ export default class PlaylistCard extends React.Component {
     render(){
         return(
             <div id = "playlist-card">
-                <p>Must render response below</p>
             </div>
         )
     }

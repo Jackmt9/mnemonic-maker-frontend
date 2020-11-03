@@ -1,6 +1,6 @@
 import React from "react";
 import '../App.css'
-import { saveBookMark } from '../services/utils'
+import { saveBookmark } from '../services/utils'
 
 export default class Result extends React.Component {
 
@@ -24,7 +24,7 @@ export default class Result extends React.Component {
   toggleSave = ()=>{
     this.setState({saved: !this.state.saved})
       if(!this.state.saved){
-        saveBookMark(1, this.props.globalState.search.song.id, this.props.globalState.search.input_phrase, this.props.globalState.search.matching_phrase)
+        saveBookmark(this.props.globalState.user.playlists[0].id, this.props.globalState.search.song.id, this.props.globalState.search.input_phrase, this.props.globalState.search.matching_phrase)
       }
   }
   
