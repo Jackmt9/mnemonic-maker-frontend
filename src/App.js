@@ -2,7 +2,8 @@ import React from 'react';
 import Login from './components/Login'
 import Logout from './components/Logout'
 import Register from './components/Register'
-import Playlists from './components/Playlists'
+import Playlists from './components/PlaylistsContainer'
+import PlaylistCard from './components/PlaylistCard'
 import NavBar from './components/NavBar'
 // import About from './components/About'
 import './App.css';
@@ -18,7 +19,6 @@ class App extends React.Component {
       stayLoggedIn()
       .then(r => {
         localStorage.token = r.token
-        // debugger
         this.props.mountUser(r)
       })
     }
@@ -43,6 +43,10 @@ class App extends React.Component {
     return <Playlists globalState={this.props.globalState} />
   }
 
+  renderPlaylist = (id) => {
+    return <PlaylistCard id={id} redirect={ () => this.props.history.push("/playlists") }/>
+  }
+
   render(){
     return (
       <div className="App">
@@ -56,6 +60,7 @@ class App extends React.Component {
         <Route path="/logout" render={ this.renderLogout } />
           <Route path="/register" render={ this.renderRegister } />
           {/* <Route path="/about" component={ About } /> */}
+          <Route exact path="/playlists/:id" render={(props) => this.renderPlaylist(props.match.params.id) } />
           <Route path="/playlists" render={ this.renderPlaylists } />
           <Route path="/" exact render={ this.renderSearch } />
           <Route render={ () => <p>Page not found</p> } />
