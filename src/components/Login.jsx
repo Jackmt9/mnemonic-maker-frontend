@@ -1,5 +1,4 @@
 import React from "react";
-import {connect} from 'react-redux'
 import {loginUser} from '../services/utils'
 
 export default class Login extends React.Component {
@@ -30,8 +29,8 @@ export default class Login extends React.Component {
       else {
         localStorage.token = resp.token
         this.props.handleLogin(resp)
+        // console.log(resp)
         this.props.redirect()
-        console.log(resp)
       }
   }
 

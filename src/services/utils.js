@@ -69,12 +69,3 @@ export const saveBookMark = (playlist_id = 1, song_id, input_phrase, matching_ph
         return r.json();
       });
 }
-
-export const fetchPlaylists = (token)=>{
-  return fetch(BACKEND + "playlists", {
-    headers: {
-      Authorization: token,
-      "content-type": "application/json",
-    },
-  }).then((r) => r.json());
-}

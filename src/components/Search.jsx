@@ -2,9 +2,8 @@ import React from "react";
 import { fetchMnemonic } from '../services/utils'
 import SearchBar from './SearchBar/SearchBar'
 import Result from "./Result";
-import {connect} from 'react-redux'
 
-class Search extends React.Component {
+export default class Search extends React.Component {
   state = {
     query: "",
     currentArtist: "any",
@@ -75,18 +74,5 @@ class Search extends React.Component {
     );
   }
 }
-
-
-// Redux implemented below to gain access to the "global state"
-
-let mapStateToProps = (globalState) => {
-  return {
-    globalState: globalState
-  }
-}
-
-// let functionThatAddsProps = connect(mapStateToProps)
-
-export default connect(mapStateToProps)(Search)
 
 

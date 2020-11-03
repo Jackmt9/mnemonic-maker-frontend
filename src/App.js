@@ -18,6 +18,7 @@ class App extends React.Component {
       stayLoggedIn(localStorage.token)
       .then(r => {
         localStorage.token = r.token
+        // debugger
         this.props.mountUser(r)
       })
     }
@@ -31,11 +32,15 @@ class App extends React.Component {
   }
 
   renderSearch = () => {
-    return <Search handleSearch={(r) => this.props.mountSearch(r)}/>
+    return <Search handleSearch={(r) => this.props.mountSearch(r)} globalState={this.props.globalState}/>
   }
 
   renderRegister = () => {
     return <Register redirect={ () => this.props.history.push("/") }/>
+  }
+
+  renderPlaylists = () => {
+    return <Playlists globalState={this.props.globalState} />
   }
 
   render(){
@@ -51,7 +56,7 @@ class App extends React.Component {
         <Route path="/logout" render={ this.renderLogout } />
           <Route path="/register" render={ this.renderRegister } />
           {/* <Route path="/about" component={ About } /> */}
-          <Route path="/playlists" component={ Playlists } />
+          <Route path="/playlists" render={ this.renderPlaylists } />
           <Route path="/" exact render={ this.renderSearch } />
           <Route render={ () => <p>Page not found</p> } />
         </Switch>
@@ -94,11 +99,9 @@ let mapDispatchToProps = {
 
 let mapStateToProps = (globalState) => {
   return {
-    // token: globalState.userInformation.token
+    globalState: globalState
   }
 }
-
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(componentWithRouterProps)
 
