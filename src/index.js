@@ -30,7 +30,7 @@ let initialState = {
       title: null,
       youtube_id: null
     }
-  },
+  }
 };
 
 // RETURN VALUE OF REDUCER BECOMES THE NEW STATE

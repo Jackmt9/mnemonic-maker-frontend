@@ -4,7 +4,7 @@ export default class PlaylistCard extends React.Component {
     render(){
         return(
             <div id = "playlist-card">
-                {this.props.playlist.title}
+                <a href={`/playlists/${this.props.playlist.id}`}>{this.props.playlist.title}</a>
             </div>
         )
     }

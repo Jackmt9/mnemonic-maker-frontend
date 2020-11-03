@@ -37,18 +37,16 @@ export const registerUser = (user_params) => {
   })
 }
 
-export const stayLoggedIn = (token) => {
+export const stayLoggedIn = () => {
   return fetch( BACKEND + 'stay_logged_in', {
     headers: {
-      "Authorization": token
+      "Authorization": localStorage.token
     }
   })
   .then(r => r.json())
 }
 
-export const saveBookMark = (playlist_id = 1, song_id, input_phrase, matching_phrase, token)=>{
-
-  console.log("token", token)
+export const saveBookMark = (playlist_id = 1, song_id, input_phrase, matching_phrase)=>{
 
   let bookmark_params = {
     playlist_id: playlist_id,
@@ -60,7 +58,7 @@ export const saveBookMark = (playlist_id = 1, song_id, input_phrase, matching_ph
       return fetch(BACKEND + "bookmarks", {
         method: "POST",
         headers: {
-          "Authorization": token,
+          "Authorization": localStorage.token,
           "content-type": "application/json"
         },
         body: JSON.stringify(bookmark_params),
@@ -68,4 +66,13 @@ export const saveBookMark = (playlist_id = 1, song_id, input_phrase, matching_ph
         console.log(`Register fetch returned with status ${r.status}`);
         return r.json();
       });
+}
+
+export const getPlaylist = (playlist_id) => {
+  return fetch( BACKEND + `playlists/${playlist_id}`, {
+    headers: {
+      "Authorization": localStorage.token
+    }
+  })
+  .then(r => r.json())
 }

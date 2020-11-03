@@ -9,18 +9,10 @@ export default class Result extends React.Component {
     scrolled: false
   }
 
-  // constructor(props) {
-  //     super(props);
-  //     this.boxRef = React.createRef();
-  // }
-
   componentDidMount = ()=>{
     this.appendLyrics()
     let result = document.getElementsByClassName("results")[0]
     result.scrollIntoView({behavior: 'smooth'})
-    // if (this.props.search.song.full_title) { 
-    //   this.boxRef.current.scrollIntoView( { behavior: 'smooth' } );
-    // }
   }
 
   componentDidUpdate = () => {
@@ -32,7 +24,7 @@ export default class Result extends React.Component {
   toggleSave = ()=>{
     this.setState({saved: !this.state.saved})
       if(!this.state.saved){
-        saveBookMark(1, this.props.globalState.search.song.id, this.props.globalState.search.input_phrase, this.props.globalState.search.matching_phrase, localStorage.token)
+        saveBookMark(1, this.props.globalState.search.song.id, this.props.globalState.search.input_phrase, this.props.globalState.search.matching_phrase)
       }
   }
   
