@@ -21,8 +21,14 @@ export default class Register extends React.Component {
       const user = this.state
       
       registerUser(user)
-      // .then(r => console.log(r))
-
+      .then((r) => {
+        if(r.message){
+          alert(r.message)
+        } else{
+          localStorage.token = r.token
+          this.props.redirect()
+        }
+      })
   }
 
   render() {

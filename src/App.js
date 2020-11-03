@@ -34,6 +34,10 @@ class App extends React.Component {
     return <Search handleSearch={(r) => this.props.mountSearch(r)}/>
   }
 
+  renderRegister = () => {
+    return <Register redirect={ () => this.props.history.push("/") }/>
+  }
+
   render(){
     return (
       <div className="App">
@@ -45,7 +49,7 @@ class App extends React.Component {
           <Route path="/login" render={ () => this.props.history.push('/') } />
         }
         <Route path="/logout" render={ this.renderLogout } />
-          <Route path="/register" component={ Register } />
+          <Route path="/register" render={ this.renderRegister } />
           {/* <Route path="/about" component={ About } /> */}
           <Route path="/playlists" component={ Playlists } />
           <Route path="/" exact render={ this.renderSearch } />
