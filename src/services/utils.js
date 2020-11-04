@@ -76,3 +76,8 @@ export const getPlaylist = (playlist_id) => {
   })
   .then(r => r.json())
 }
+export const getSong = (song_id) => {
+  console.log('getting song', song_id)
+  return fetch( BACKEND + `songs/${song_id}`)
+  .then(r => r.json())
+}
