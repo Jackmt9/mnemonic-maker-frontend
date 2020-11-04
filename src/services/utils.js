@@ -54,18 +54,19 @@ export const saveBookmark = (playlist_id = 1, song_id, input_phrase, matching_ph
     input_phrase: input_phrase,
     matching_phrase: matching_phrase
   }
-    // console.log(song_id, input_phrase, matching_phrase)
-      return fetch(BACKEND + "bookmarks", {
-        method: "POST",
-        headers: {
-          "Authorization": localStorage.token,
-          "content-type": "application/json"
-        },
-        body: JSON.stringify(bookmark_params),
-      }).then((r) => {
-        console.log(`Register fetch returned with status ${r.status}`);
-        return r.json();
-      });
+
+  return fetch(BACKEND + "bookmarks", {
+    method: "POST",
+    headers: {
+      "Authorization": localStorage.token,
+      "content-type": "application/json"
+    },
+    body: JSON.stringify(bookmark_params),
+  })
+  .then((r) => {
+    console.log(`Register fetch returned with status ${r.status}`);
+    return r.json();
+  });
 }
 
 export const getPlaylist = (playlist_id) => {

@@ -20,17 +20,6 @@ export default class PlaylistCard extends React.Component {
             } 
         })
     }
-    // componentWillMount = () => {
-    //     getPlaylist(this.props.id)
-    //     .then(r => {
-    //         if(r.message){
-    //             alert(r.message)
-    //             this.props.redirect()
-    //         } else {
-    //             console.log(r)
-    //         }
-    //     })
-    // }
 
     styles = {
         card_deck: {
@@ -41,19 +30,13 @@ export default class PlaylistCard extends React.Component {
 
     render(){
         return(
-            // <CardDeck >
             <CardDeck id = "playlist-card" style = {this.styles.card_deck}>
                 {this.state.bookmarks ? 
-                this.state.bookmarks.map((bookmark) =>
-                <BookmarkCard bookmark = {bookmark}/>
-                )
+                this.state.bookmarks.map((bookmark) => <BookmarkCard bookmark = {bookmark}/>)
                 :
                 null
                 }
-                {/* <BookmarkCard id = "bookmark-card"/> */}
-            </CardDeck>
-            // </CardDeck>
-            
+            </CardDeck>    
         )
     }
 }

@@ -23,9 +23,9 @@ export default class Result extends React.Component {
 
   toggleSave = ()=>{
     this.setState({saved: !this.state.saved})
-      if(!this.state.saved){
-        saveBookmark(this.props.globalState.user.playlists[0].id, this.props.globalState.search.song.id, this.props.globalState.search.input_phrase, this.props.globalState.search.matching_phrase)
-      }
+    if(!this.state.saved){
+      saveBookmark(this.props.globalState.user.playlists[0].id, this.props.globalState.search.song.id, this.props.globalState.search.input_phrase, this.props.globalState.search.matching_phrase)
+    }
   }
   
   appendLyrics = () => {
@@ -41,7 +41,6 @@ export default class Result extends React.Component {
       );
       lyrics.innerHTML += "<br/>";
     });
-
     songDiv.append(lyrics);
   };
 

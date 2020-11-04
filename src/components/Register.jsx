@@ -10,25 +10,25 @@ export default class Register extends React.Component {
   }
 
   handleChange = ({target}) => { 
-      this.setState({
-          [target.name]: target.value
-      })
-      console.log(this.state)
+    this.setState({
+      [target.name]: target.value
+    })
+    console.log(this.state)
   }
 
   handleSubmit = (evt) => {
-      evt.preventDefault()
-      const user = this.state
-      
-      registerUser(user)
-      .then((r) => {
-        if(r.message){
-          alert(r.message)
-        } else{
-          localStorage.token = r.token
-          this.props.redirect()
-        }
-      })
+    evt.preventDefault()
+    const user = this.state
+    
+    registerUser(user)
+    .then((r) => {
+      if(r.message){
+        alert(r.message)
+      } else{
+        localStorage.token = r.token
+        this.props.redirect()
+      }
+    })
   }
 
   render() {
