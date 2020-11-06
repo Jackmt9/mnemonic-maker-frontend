@@ -103,6 +103,7 @@ renderPlaylists = ()=>{
                     <CreatePlaylist 
                     hideModal = {this.hideModal}
                     />
+                    <button onClick = {this.hideModal}>close</button>
                 </Modal>
             </div>)
     }

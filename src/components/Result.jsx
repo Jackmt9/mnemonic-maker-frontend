@@ -66,7 +66,9 @@ export default class Result extends React.Component {
     right                 : 'auto',
     bottom                : 'auto',
     marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
+    transform             : 'translate(-50%, -50%)',
+   'overflow-y'           :'auto',
+   'max-height'           :'100vh'   
   }
 };
       return (
@@ -74,6 +76,8 @@ export default class Result extends React.Component {
         <Modal
         isOpen={this.state.showModal}
         style = {customStyles}
+        onRequestClose={this.hideModal}
+        scrollable = {true}
         // onHide={() => this.setState({showModal: false})}
         >
           
