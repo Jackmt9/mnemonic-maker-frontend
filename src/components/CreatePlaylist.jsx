@@ -17,12 +17,19 @@ export default class CreatePlaylistForm extends React.Component{
         .then(()=>{
             this.props.hideModal()
         })
+        .then(()=>{
+            // this.props.renderPlaylists()
+        })
         console.log('yooo')
      }
 
      componentDidMount = ()=>{
          console.log(this.props.globalState)
          
+     }
+
+     componentWillUnmount = ()=>{
+        // this.props.renderPlaylists()
      }
 render(){
 

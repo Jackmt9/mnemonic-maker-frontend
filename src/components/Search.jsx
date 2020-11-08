@@ -19,6 +19,15 @@ export default class Search extends React.Component {
   // toggleScroll = ()=>{
   //   this.setState({resultDisplayed: !this.state.resultDisplayed});
   // }
+  scrollSearchIntoView = ()=>{
+  //  let search_bar  = document.getElementById('search-bar')
+  //     search_bar.scrollIntoView({behavior: 'smooth'})
+  //     console.log('scrolling',search_bar)
+   window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
 
   goToNextResult = (e, query, current_song_index = 0, artist, order_matters) => {
     console.log("next result");
@@ -42,11 +51,11 @@ export default class Search extends React.Component {
         });
         this.props.handleSearch(r)
         document.getElementById("logo-container").innerHTML = "";
-        const toggleScroll = setInterval(() => {
-          this.setState({ resultDisplayed: false });
-          console.log(this.state.resultDisplayed);
-          clearInterval(toggleScroll);
-        }, 1000);
+        // const toggleScroll = setInterval(() => {
+        //   this.setState({ resultDisplayed: false });
+        //   console.log(this.state.resultDisplayed);
+        //   clearInterval(toggleScroll);
+        // }, 1000);
       }
     });
     e.preventDefault();
@@ -59,7 +68,9 @@ export default class Search extends React.Component {
   render() {
     return (
       <div className="home">
+        <div id= 'search-bar'>
         <SearchBar handleSubmit={this.handleSubmit} />
+        </div>
         {this.state.error ? <div id="error-div"></div> : null}
         <div id="logo-container"></div>
         <div id="full-body-div">
@@ -67,8 +78,11 @@ export default class Search extends React.Component {
             <Result
               handleSubmit={this.handleSubmit}
               globalState={this.props.globalState}
+              scrollSearchIntoView = {this.scrollSearchIntoView}
             />
+            
           ) : null}
+
         </div>
       </div>
     );

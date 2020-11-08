@@ -46,15 +46,15 @@ export const stayLoggedIn = () => {
   .then(r => r.json())
 }
 
-export const saveBookmark = (playlist_id = 1, song_id, input_phrase, matching_phrase)=>{
-
+export const saveBookmark = (playlist_id, song_id, input_phrase, matching_phrase)=>{
   let bookmark_params = {
     playlist_id: playlist_id,
     song_id: song_id,
     input_phrase: input_phrase,
     matching_phrase: matching_phrase
   }
-    // console.log(song_id, input_phrase, matching_phrase)
+  
+    console.log("bookmark params:",bookmark_params)
       return fetch(BACKEND + "bookmarks", {
         method: "POST",
         headers: {
@@ -63,6 +63,7 @@ export const saveBookmark = (playlist_id = 1, song_id, input_phrase, matching_ph
         },
         body: JSON.stringify(bookmark_params),
       }).then((r) => {
+        console.log('params', r)
         console.log(`Register fetch returned with status ${r.status}`);
         return r.json();
       });

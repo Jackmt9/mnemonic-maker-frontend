@@ -23,6 +23,7 @@ export default class Result extends React.Component {
     this.appendLyrics()
     let result = document.getElementsByClassName("results")[0]
     result.scrollIntoView({behavior: 'smooth'})
+    
   }
 
   toggleSave = ()=>{
@@ -30,6 +31,17 @@ export default class Result extends React.Component {
       if(!this.state.saved){
         saveBookmark(this.props.globalState.user.playlists[0].id, this.props.globalState.search.song.id, this.props.globalState.search.input_phrase, this.props.globalState.search.matching_phrase)
       }
+  }
+
+  backToSearch = ()=>{
+    // this.props.scrollSearchIntoView()
+    this.setState({scrolled: true})
+ 
+     window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "smooth"
+    });
   }
   
   appendLyrics = () => {
@@ -81,7 +93,9 @@ export default class Result extends React.Component {
         // onHide={() => this.setState({showModal: false})}
         >
           
-          <AddToPlaylist globalState = {this.props.globalState}/>
+          <AddToPlaylist globalState = {this.props.globalState}
+          
+          />
             <button onClick = {this.hideModal}>
               Close
             </button>
@@ -125,7 +139,10 @@ export default class Result extends React.Component {
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
-          /> 
+            /> 
+            <button onClick = {this.backToSearch} id = 'back-to-search'>
+              Back to search ⬆
+            </button>
           <div id="song"></div> 
         </div>
       );
