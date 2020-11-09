@@ -45,7 +45,7 @@ export default class Register extends React.Component {
             <input type="text" autoComplete="off" name="email" value={this.state.email} onChange={this.handleChange}/>
             <br/>
             <label htmlFor="password">Password:</label>
-            <input type="text" autoComplete="off" name="password" value={this.state.password} onChange={this.handleChange}/>
+            <input type="password" autoComplete="off" name="password" value={this.state.password} onChange={this.handleChange}/>
             <br/>
             <input type="submit" value="Create Account"/>
         </form>
