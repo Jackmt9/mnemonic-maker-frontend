@@ -52,16 +52,19 @@ class App extends React.Component {
       <div className="App">
         <NavBar />
         <Switch>
-          {!localStorage.token?
-          <Route path="/login" render={this.renderLogin} />
-          :
-          <Route path="/login" render={ () => this.props.history.push('/') } />
-        }
-        <Route path="/logout" render={ this.renderLogout } />
-          <Route path="/register" render={ this.renderRegister } />
+          {localStorage.token ?
+            [
+              <Route path="/logout" render={ this.renderLogout } />,
+              <Route path="/playlists" render={ this.renderPlaylists } />
+            ]
+            :
+            [
+              <Route path="/login" render={this.renderLogin} />,
+              <Route path="/register" render={ this.renderRegister } />,
+            ]
+          }
+  
           {/* <Route path="/about" component={ About } /> */}
-          <Route exact path="/playlists/:id" render={(props) => this.renderPlaylist(props.match.params.id) } />
-          <Route path="/playlists" render={ this.renderPlaylists } />
           <Route path="/" exact render={ this.renderSearch } />
           <Route render={ () => <p>Page not found</p> } />
         </Switch>

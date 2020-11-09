@@ -16,25 +16,25 @@ export default class NavBar extends React.Component {
         <li>
           <NavLink to="/about">About</NavLink>
         </li>
-        {!localStorage.token?
-        null
-        :
-        <li>
-          <NavLink to="/playlists">Playlists</NavLink>
-        </li>
-        
-        }
-        <li>
-          <NavLink to="/register">Register</NavLink>
-        </li>
-        {!localStorage.token?
-        <li>
-          <NavLink to="/login">Login</NavLink>
-        </li>
-        :
-        <li>
-          <NavLink to="/logout">Logout</NavLink>
-        </li>
+        {localStorage.token ? 
+          [
+          <li>
+            <NavLink to="/playlists">Playlists</NavLink>
+          </li>,
+          <li>
+            <NavLink to="/logout">Logout</NavLink>
+          </li>
+          ]
+
+          :
+          [
+          <li>
+            <NavLink to="/register">Register</NavLink>
+          </li>,
+          <li>
+            <NavLink to="/login">Login</NavLink>
+          </li>
+          ]
         }
       </ul>
     );
