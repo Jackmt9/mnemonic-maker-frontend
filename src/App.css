@@ -82,6 +82,10 @@ nav{
   font-size: 30px;
   /* top: -100; */
 }
+#add-song {
+   cursor: default;
+  font-size: 20px;
+}
 .query-summary{
   display: inline-block;
 }
@@ -89,8 +93,21 @@ nav{
   margin-left: 100px;
   margin-right: 100px;
 }
+#back-to-search{
+  bottom: 0;
+  right: 0;
+  position: fixed;
+  z-index: 3000;    
+}
 .home{
   background-color: #282c34;
+}
+.inline-playlist-card{
+ display: inline-block;
+}
+#modal{
+  height: 20;
+  width: 20;
 }
 #next-page-button{
   margin-left: 500px;

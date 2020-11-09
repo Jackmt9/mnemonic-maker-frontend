@@ -46,8 +46,7 @@ export const stayLoggedIn = () => {
   .then(r => r.json())
 }
 
-export const saveBookmark = (playlist_id = 1, song_id, input_phrase, matching_phrase)=>{
-
+export const saveBookmark = (playlist_id, song_id, input_phrase, matching_phrase)=>{
   let bookmark_params = {
     playlist_id: playlist_id,
     song_id: song_id,
@@ -81,4 +80,25 @@ export const getSong = (song_id) => {
   console.log('getting song', song_id)
   return fetch( BACKEND + `songs/${song_id}`)
   .then(r => r.json())
+}
+
+export const getYoutubeUrl = (full_title) => {
+  console.log("getting song", full_title);
+  return fetch(BACKEND + `tune_to_tube/${full_title}`)
+  .then(r => r.json());
+};
+
+export const createPlaylist = (playlist_params)=>{
+console.log(playlist_params)
+return fetch(BACKEND + 'playlists', {
+        method: "POST",
+        headers: {
+          "Authorization": localStorage.token,
+          "content-type": "application/json"
+        },
+        body: JSON.stringify(playlist_params),
+      }).then((r) => {
+        console.log(`Register fetch returned with status ${r.status}`);
+        return r.json();
+      });
 }

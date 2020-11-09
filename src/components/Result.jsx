@@ -1,11 +1,15 @@
 import React from "react";
+
 import '../App.css'
 import { saveBookmark } from '../services/utils'
-
+import Modal from 'react-modal';
+import CreatePlaylistForm from './AddToPlaylist'
+import AddToPlaylist from './AddToPlaylist'
 export default class Result extends React.Component {
 
   state = {
     saved: false,
+    showModal: false,
     scrolled: false
   }
 
@@ -19,6 +23,7 @@ export default class Result extends React.Component {
     this.appendLyrics()
     let result = document.getElementsByClassName("results")[0]
     result.scrollIntoView({behavior: 'smooth'})
+    
   }
 
   toggleSave = ()=>{
@@ -26,6 +31,17 @@ export default class Result extends React.Component {
     if(!this.state.saved){
       saveBookmark(this.props.globalState.user.playlists[0].id, this.props.globalState.search.song.id, this.props.globalState.search.input_phrase, this.props.globalState.search.matching_phrase)
     }
+  }
+
+  backToSearch = ()=>{
+    // this.props.scrollSearchIntoView()
+    this.setState({scrolled: true})
+ 
+     window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "smooth"
+    });
   }
   
   appendLyrics = () => {
@@ -44,20 +60,60 @@ export default class Result extends React.Component {
     songDiv.append(lyrics);
   };
 
+  showModal = ()=>{
+    this.setState({showModal: true})
+    console.log('showing modal', this.state.showModal)
+  }
+
+  hideModal = ()=>{
+    this.setState({showModal: false})
+  }
+
   render(){
+    const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)',
+   'overflow-y'           :'auto',
+   'max-height'           :'100vh'   
+  }
+};
       return (
-        <div ref={this.boxRef} className="results">
+        <div className="results">
+        <Modal
+        isOpen={this.state.showModal}
+        style = {customStyles}
+        onRequestClose={this.hideModal}
+        scrollable = {true}
+        // onHide={() => this.setState({showModal: false})}
+        >
+          
+          <AddToPlaylist globalState = {this.props.globalState}
+          
+          />
+            <button onClick = {this.hideModal}>
+              Close
+            </button>
+        </Modal>
             <p onClick={this.toggleSave}
               id="star-saver"
               className="query-summary">
               {this.state.saved ? "★" : "☆"}
             </p>
+            
             <div id="song-image-container" className= "query-summary">
               <img width = '40' height = '40' src = {this.props.globalState.search.song.image} alt = {this.props.globalState.search.song.full_title}/>
           </div>
             <a href={this.props.globalState.search.song.url} >
               {this.props.globalState.search.song.full_title}</a>
           <div id="input-phrase-match" className="query-summary">
+              <button id = "add-song" onClick = {this.showModal}>
+              + Add to playlist
+            </button>
             Your Input:
             {"  " + this.props.globalState.search.input_phrase}
             <br />
@@ -82,7 +138,10 @@ export default class Result extends React.Component {
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
-          /> 
+            /> 
+            <button onClick = {this.backToSearch} id = 'back-to-search'>
+              Back to search ⬆
+            </button>
           <div id="song"></div> 
         </div>
       );
