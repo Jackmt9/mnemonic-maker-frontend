@@ -10,7 +10,8 @@ export default class Result extends React.Component {
   state = {
     saved: false,
     showModal: false,
-    scrolled: false
+    scrolled: false,
+    showModel: false
   }
 
   componentDidMount = ()=>{
@@ -60,13 +61,8 @@ export default class Result extends React.Component {
     songDiv.append(lyrics);
   };
 
-  showModal = ()=>{
-    this.setState({showModal: true})
-    console.log('showing modal', this.state.showModal)
-  }
-
-  hideModal = ()=>{
-    this.setState({showModal: false})
+  toggleModal = ()=>{
+    this.setState({showModal: !this.state.showModal})
   }
 
   render(){
@@ -87,15 +83,14 @@ export default class Result extends React.Component {
         <Modal
         isOpen={this.state.showModal}
         style = {customStyles}
-        onRequestClose={this.hideModal}
+        onRequestClose={this.toggleModal}
         scrollable = {true}
-        // onHide={() => this.setState({showModal: false})}
         >
           
           <AddToPlaylist globalState = {this.props.globalState}
-          
+            toggleModal={this.toggleModal}
           />
-            <button onClick = {this.hideModal}>
+            <button onClick = {this.toggleModal}>
               Close
             </button>
         </Modal>
@@ -111,7 +106,7 @@ export default class Result extends React.Component {
             <a href={this.props.globalState.search.song.url} >
               {this.props.globalState.search.song.full_title}</a>
           <div id="input-phrase-match" className="query-summary">
-              <button id = "add-song" onClick = {this.showModal}>
+              <button id = "add-song" onClick = {this.toggleModal}>
               + Add to playlist
             </button>
             Your Input:

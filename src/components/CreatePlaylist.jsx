@@ -15,12 +15,8 @@ export default class CreatePlaylistForm extends React.Component{
          evt.preventDefault()
         createPlaylist(this.state)
         .then(()=>{
-            this.props.hideModal()
+            this.props.toggleModal()
         })
-        .then(()=>{
-            // this.props.renderPlaylists()
-        })
-        console.log('yooo')
      }
 
      componentDidMount = ()=>{

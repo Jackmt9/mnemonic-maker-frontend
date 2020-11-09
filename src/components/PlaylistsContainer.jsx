@@ -11,7 +11,8 @@ export default class PlaylistsContainer extends React.Component {
 
     state = {
         featured_title: null,
-            featured_bookmarks: null
+        featured_bookmarks: null,
+        showModal: false
     }
     componentDidMount = ()=>{
         console.log("global state playlist container",this.props.globalState)
@@ -86,11 +87,8 @@ renderPlaylists = ()=>{
          });
      };
 
-     showModal = ()=>{
-         this.setState({showModal: true})
-     }
-     hideModal = ()=>{
-         this.setState({showModal: false})
+     toggleModal = ()=>{
+         this.setState({showModal: !this.state.showModal})
      }
 
     render(){
@@ -109,7 +107,7 @@ renderPlaylists = ()=>{
 
         return (
             <div>
-                <div id = "new-playlist" onClick = {this.showModal}>
+                <div id = "new-playlist" onClick = {this.toggleModal}>
                     <img src = {NewPlaylist} height = '100' width = '100'/>
                     <text>new playlist...</text>
                 </div>
@@ -117,13 +115,12 @@ renderPlaylists = ()=>{
                     {}
                 </div>
                 <Modal isOpen={this.state.showModal}
-                        style = {customStyles}
-                        >
+                        style = {customStyles}>
                     <CreatePlaylist 
-                    hideModal = {this.hideModal}
+                    toggleModal = {this.toggleModal}
                     renderPlaylists = {this.renderPlaylists}
                     />
-                    <button onClick = {this.hideModal}>close</button>
+                    <button onClick = {this.toggleModal}>close</button>
                 </Modal>
                     <div id = "featued-container">
                  <h1>{this.state.featured_title}</h1>
