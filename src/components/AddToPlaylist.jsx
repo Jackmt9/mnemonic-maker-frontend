@@ -17,7 +17,8 @@ export default class AddToPlaylist extends React.Component{
      addToPlaylist = (playlist_id)=>{
          console.log('yo homie add to playlist', this.props.globalState.search )
          saveBookmark(playlist_id, this.props.globalState.search.song.id, this.props.globalState.search.input_phrase, this.props.globalState.search.matching_phrase)
-         .then(() => {this.props.toggleModal()})
+         .then(() => this.props.toggleModal())
+         console.log("added")
      }
      renderPlaylists = ()=>{
     let container = document.getElementById("playlist-card-container")
@@ -39,6 +40,7 @@ export default class AddToPlaylist extends React.Component{
                 let playlist_card = document.createElement('div')
                 let footer = document.createElement('footer')
                 footer.append(text_title)
+                playlist_card.onclick = () =>this.addToPlaylist(playlist.id)
                 playlist_card.append(playlist_image, footer)
                 container.append(playlist_card)
                 })
@@ -55,7 +57,7 @@ export default class AddToPlaylist extends React.Component{
                 let footer = document.createElement('footer')
                 footer.append(text_title)
                 playlist_card.append(playlist_image, footer)  
-            container.append(playlist_card)
+                container.append(playlist_card)
             }
             })
         

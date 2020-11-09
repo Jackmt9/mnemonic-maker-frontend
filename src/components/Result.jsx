@@ -11,7 +11,7 @@ export default class Result extends React.Component {
     saved: false,
     showModal: false,
     scrolled: false,
-    showModel: false
+    showModal: false
   }
 
   componentDidMount = ()=>{
@@ -63,6 +63,7 @@ export default class Result extends React.Component {
 
   toggleModal = ()=>{
     this.setState({showModal: !this.state.showModal})
+    console.log(this.state.showModal)
   }
 
   render(){
