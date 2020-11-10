@@ -112,8 +112,3 @@ let mapStateToProps = (globalState) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(componentWithRouterProps)
-
-
-
-
-
