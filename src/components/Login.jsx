@@ -35,16 +35,16 @@ export default class Login extends React.Component {
 
   render() {
       return(
-          <form onSubmit={this.handleSubmit}>
-              <h1>Login</h1>
-              <label htmlFor="email">email:</label>
-              <input type="text" autoComplete="off" name="email" value={this.state.email} onChange={this.handleChange}/>
-              <br/>
-              <label htmlFor="password">Password:</label>
-              <input type="password" autoComplete="off" name="password" value={this.state.value} onChange={this.handleChange}/>
-              <br/>
-              <input type="submit" value="Login"/>
-          </form>
+        <form onSubmit={this.handleSubmit}>
+            <h1>Login</h1>
+            <label htmlFor="email">email:</label>
+            <input type="text" autoComplete="off" name="email" value={this.state.email} onChange={this.handleChange}/>
+            <br/>
+            <label htmlFor="password">Password:</label>
+            <input type="password" autoComplete="off" name="password" value={this.state.value} onChange={this.handleChange}/>
+            <br/>
+            <input type="submit" value="Login"/>
+        </form>
       )
   }
 }

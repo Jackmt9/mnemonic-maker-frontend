@@ -24,11 +24,7 @@ export default class CreatePlaylistForm extends React.Component{
          
      }
 
-     componentWillUnmount = ()=>{
-        // this.props.renderPlaylists()
-     }
-render(){
-
+    render(){
         return (
             <>
             <form onSubmit = {this.handleSubmit}>

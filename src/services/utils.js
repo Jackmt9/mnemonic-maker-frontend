@@ -6,7 +6,10 @@ export const fetchMnemonic = (phrase, current_song_index, artist, order) => {
     artist = 'any'
   }
   return fetch(BACKEND + `query/${phrase}/${current_song_index}/artist/${artist}/order/${order}`)
-  .then(r => r.json())
+  .then(r => {
+    console.log(`fetchMnemonic fetch returned with status ${r.status}`)
+    return r.json()
+  })
 }
 
 export const loginUser = (user_params) => {
@@ -17,7 +20,7 @@ export const loginUser = (user_params) => {
       body: JSON.stringify(user_params)
   })
   .then( r => {
-    console.log(`Login fetch returned with status ${r.status}`)
+    console.log(`loginUser fetch returned with status ${r.status}`)
     return r.json() 
   })
 }
@@ -32,7 +35,7 @@ export const registerUser = (user_params) => {
       body: JSON.stringify(user_params)
   })
   .then(r => {
-    console.log(`Register fetch returned with status ${r.status}`)
+    console.log(`registerUser fetch returned with status ${r.status}`)
     return r.json()
   })
 }
@@ -43,7 +46,10 @@ export const stayLoggedIn = () => {
       "Authorization": localStorage.token
     }
   })
-  .then(r => r.json())
+  .then(r => {
+    console.log(`stayLoggedIn fetch returned with status ${r.status}`)
+    return r.json()
+  })
 }
 
 export const saveBookmark = (playlist_id, song_id, input_phrase, matching_phrase)=>{
@@ -63,7 +69,7 @@ export const saveBookmark = (playlist_id, song_id, input_phrase, matching_phrase
     body: JSON.stringify(bookmark_params),
   })
   .then((r) => {
-    console.log(`Register fetch returned with status ${r.status}`);
+    console.log(`saveBookmark fetch returned with status ${r.status}`)
     return r.json();
   });
 }
@@ -74,18 +80,27 @@ export const getPlaylist = (playlist_id) => {
       "Authorization": localStorage.token
     }
   })
-  .then(r => r.json())
+  .then(r => {
+    console.log(`getPlaylist fetch returned with status ${r.status}`);
+    return r.json()
+  })
 }
 export const getSong = (song_id) => {
   console.log('getting song', song_id)
   return fetch( BACKEND + `songs/${song_id}`)
-  .then(r => r.json())
+  .then(r => {
+    console.log(`getSong fetch returned with status ${r.status}`);
+    return r.json()
+  })
 }
 
 export const getYoutubeUrl = (full_title) => {
   console.log("getting song", full_title);
   return fetch(BACKEND + `tune_to_tube/${full_title}`)
-  .then(r => r.json());
+  .then(r => {
+    console.log(`getYoutubeUrl fetch returned with status ${r.status}`);
+    return r.json()
+  });
 };
 
 export const createPlaylist = (playlist_params)=>{
@@ -98,7 +113,7 @@ return fetch(BACKEND + 'playlists', {
         },
         body: JSON.stringify(playlist_params),
       }).then((r) => {
-        console.log(`Register fetch returned with status ${r.status}`);
+        console.log(`createPlaylist fetch returned with status ${r.status}`);
         return r.json();
       });
 }

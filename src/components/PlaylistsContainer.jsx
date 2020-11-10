@@ -20,34 +20,28 @@ export default class PlaylistsContainer extends React.Component {
         this.renderPlaylists()
          }
     }
-reRenderPlaylists = ()=>{
-    console.log('re-rendering playlists')
-    document.getElementById('playlist-card-container').innerHTML = ''
-    this.renderPlaylists()
-}
-    componentDidUpdate = ()=>{
-        if(this.props.globalState.user.id){
-        // this.reRenderPlaylists()
-         }
+
+    reRenderPlaylists = ()=>{
+        console.log('re-rendering playlists')
+        document.getElementById('playlist-card-container').innerHTML = ''
+        this.renderPlaylists()
     }
 
     setFeatured = (id)=>{
-        console.log('yo', id)
         getPlaylist(id)
         .then((r)=>{
             this.setState({featured_bookmarks: r.playlist.bookmarks, featured_title: r.playlist.title})
         })
     }
-renderPlaylists = ()=>{
-         let container = document.getElementById("playlist-card-container")
-         this.props.globalState.user.playlists.forEach((playlist)=>{
-             console.log("yooooo",playlist)
-             let playlist_image;
-             console.log(playlist)
-             getPlaylist(playlist.id)
+
+    renderPlaylists = ()=>{
+        let container = document.getElementById("playlist-card-container")
+        this.props.globalState.user.playlists.forEach((playlist)=>{
+            let playlist_image;
+            console.log(playlist)
+            getPlaylist(playlist.id)
             .then((r)=>{
-                    console.log('response', r)
-                    if(r.playlist.bookmarks.length > 0){
+                if(r.playlist.bookmarks.length > 0){
                 //if the user has bookmarks saved, show a song image for the playlist image
                 getSong(r.playlist.bookmarks[0].song_id)
                 .then((song)=>{console.log("song",song.image)
@@ -69,12 +63,12 @@ renderPlaylists = ()=>{
             })
                 }
                 else{
-                     let text_title = document.createElement('text')
+                    let text_title = document.createElement('text')
                     text_title.innerText = r.playlist.title
-                     playlist_image = document.createElement('img')
-                     playlist_image.src = MusicSymbol
-                     playlist_image.height = '100'
-                     playlist_image.width = '100'
+                    playlist_image = document.createElement('img')
+                    playlist_image.src = MusicSymbol
+                    playlist_image.height = '100'
+                    playlist_image.width = '100'
                     let playlist_card = document.createElement('div')
                     let footer = document.createElement('footer')
                 footer.append(text_title)
@@ -84,26 +78,24 @@ renderPlaylists = ()=>{
                     container.append(playlist_card)
                 }
             })
-         });
-     };
+        });
+    };
 
      toggleModal = ()=>{
          this.setState({showModal: !this.state.showModal})
      }
 
     render(){
-           const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
-  }
-};
-
-
+        const customStyles = {
+            content : {
+                top                   : '50%',
+                left                  : '50%',
+                right                 : 'auto',
+                bottom                : 'auto',
+                marginRight           : '-50%',
+                transform             : 'translate(-50%, -50%)'
+            }
+        };
 
         return (
             <div>
@@ -133,6 +125,7 @@ renderPlaylists = ()=>{
                 null
                 }
                 </div>
-            </div>)
+            </div>
+        )
     }
 }

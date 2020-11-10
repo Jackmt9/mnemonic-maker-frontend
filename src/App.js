@@ -5,7 +5,7 @@ import Register from './components/Register'
 import Playlists from './components/PlaylistsContainer'
 import PlaylistCard from './components/PlaylistCard'
 import NavBar from './components/NavBar'
-// import About from './components/About'
+import About from './components/About'
 import './App.css';
 import Search from './components/Search'
 import {Switch, Route, withRouter} from 'react-router-dom'
@@ -64,7 +64,7 @@ class App extends React.Component {
             ]
           }
   
-          {/* <Route path="/about" component={ About } /> */}
+          <Route path="/about" component={ About } />
           <Route path="/" exact render={ this.renderSearch } />
           <Route render={ () => <p>Page not found</p> } />
         </Switch>

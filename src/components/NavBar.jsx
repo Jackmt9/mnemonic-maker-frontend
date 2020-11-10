@@ -3,10 +3,6 @@ import {NavLink} from 'react-router-dom'
 
 export default class NavBar extends React.Component {
 
-  styles = {
-    background: "#37C1A8",
-  }
-
   render() {
     return (
       <ul className="nav">

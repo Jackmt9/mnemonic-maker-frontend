@@ -20,6 +20,7 @@ export default class Search extends React.Component {
     console.log("next result");
     this.handleSubmit(e, query, current_song_index, artist, order_matters);
   };
+  
   handleSubmit = (e, query, current_song_index = 0, artist, order_matters) => {
     this.setState({ query: query, currentArtist: artist });
     fetchMnemonic(query, current_song_index, artist, order_matters).then((r) => {
@@ -36,11 +37,6 @@ export default class Search extends React.Component {
         });
         this.props.handleSearch(r)
         document.getElementById("logo-container").innerHTML = "";
-        // const toggleScroll = setInterval(() => {
-        //   this.setState({ resultDisplayed: false });
-        //   console.log(this.state.resultDisplayed);
-        //   clearInterval(toggleScroll);
-        // }, 1000);
       }
     });
     e.preventDefault();
