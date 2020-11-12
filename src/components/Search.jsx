@@ -35,10 +35,7 @@ export default class Search extends React.Component {
   };
   handleSubmit = (e, query, current_song_index = 0, artist, order_matters) => {
     this.setState({ query: query, currentArtist: artist });
-    // console.log('nowhere man log', query, this.props.globalState.search)
-    console.log('fetching like a dog', query, current_song_index, artist, order_matters )
     fetchMnemonic(query, current_song_index, artist, order_matters).then((r) => {
-      console.log(r)
       if (r.error) {
         this.setState({ error: r.error });
         let errorDiv = document.getElementById("error-div");
@@ -51,11 +48,6 @@ export default class Search extends React.Component {
         });
         this.props.handleSearch(r)
         document.getElementById("logo-container").innerHTML = "";
-        // const toggleScroll = setInterval(() => {
-        //   this.setState({ resultDisplayed: false });
-        //   console.log(this.state.resultDisplayed);
-        //   clearInterval(toggleScroll);
-        // }, 1000);
       }
     });
     e.preventDefault();

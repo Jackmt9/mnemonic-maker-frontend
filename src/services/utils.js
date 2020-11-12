@@ -2,11 +2,24 @@
 const BACKEND = "http://127.0.0.1:3001/";
 
 export const fetchMnemonic = (phrase, current_song_index, artist, order) => {
+  console.log('fetching', artist)
   if(!artist){
     artist = 'any'
   }
+  if(artist == "perfect"){
+    console.log('perfect')
+    return fetch(
+      BACKEND +
+        `query/${phrase}/${current_song_index}/artist/${artist}/order/${order}/perfect`
+    ).then((r) =>  {r.json()
+    console.log(r)
+    }
+    );
+  }
+  else{
   return fetch(BACKEND + `query/${phrase}/${current_song_index}/artist/${artist}/order/${order}`)
   .then(r => r.json())
+  }
 }
 
 export const loginUser = (user_params) => {
