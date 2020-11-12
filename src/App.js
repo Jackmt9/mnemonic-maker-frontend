@@ -18,7 +18,7 @@ class App extends React.Component {
     if(localStorage.token){
       stayLoggedIn()
       .then(r => {
-        localStorage.token = r.token
+        // localStorage.token = r.token
         console.log('this', r)
         this.props.mountUser(r)
       })
