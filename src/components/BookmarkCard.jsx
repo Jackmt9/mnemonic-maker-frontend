@@ -1,7 +1,5 @@
 import React, {button} from 'react';
 import Card from 'react-bootstrap/Card'
-
-import {getYoutubeUrl} from '../services/utils'
 import {getSong} from '../services/utils'
 
 export default class BookmarkCard extends React.Component {
@@ -16,12 +14,7 @@ export default class BookmarkCard extends React.Component {
         console.log('bookmark mounting')
         getSong(this.props.bookmark.song_id)
         .then((song)=>this.setState({song}))
-        .then(()=>{
-            getYoutubeUrl(this.state.song.full_title)
-            .then((r)=>{console.log(r.youtube_id)
-            this.setState({youtube_id: r.youtube_id})
-            })
-        })
+        // set youtube id too!
     }
 
     styles = {

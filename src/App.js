@@ -19,10 +19,12 @@ class App extends React.Component {
       stayLoggedIn()
       .then(r => {
         localStorage.token = r.token
+        console.log('this', r)
         this.props.mountUser(r)
       })
     }
   }
+
   renderLogin = () => {
     return <Login handleLogin={ (r) => this.props.mountUser(r) } redirect={ () => this.props.history.push("/") }/>
   }
