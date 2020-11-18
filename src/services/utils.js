@@ -10,11 +10,8 @@ export const fetchMnemonic = (phrase, current_song_index, artist, order) => {
     console.log('perfect')
     return fetch(
       BACKEND +
-        `query/${phrase}/${current_song_index}/artist/${artist}/order/${order}/perfect`
-    ).then((r) =>  {r.json()
-    console.log(r)
-    }
-    );
+        `query/${phrase}/${current_song_index}/order/${order}/perfect`
+    ).then((r) =>  r.json());
   }
   else{
   return fetch(BACKEND + `query/${phrase}/${current_song_index}/artist/${artist}/order/${order}`)

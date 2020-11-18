@@ -36,11 +36,13 @@ export default class Search extends React.Component {
   handleSubmit = (e, query, current_song_index = 0, artist, order_matters) => {
     this.setState({ query: query, currentArtist: artist });
     fetchMnemonic(query, current_song_index, artist, order_matters).then((r) => {
+      console.log(r)
       if (r.error) {
         this.setState({ error: r.error });
         let errorDiv = document.getElementById("error-div");
         errorDiv.innerText = r.error;
       } else {
+        console.log("global state: ",this.props.globalState)
         this.setState({
           error: null,
           currentSongIndex: r.current_song_index,

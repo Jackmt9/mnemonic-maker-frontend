@@ -119,7 +119,7 @@ export default class Result extends React.Component {
             {"  " + this.props.globalState.search.input_phrase}
             <br />
             Matching Phrase:
-            {" " + this.props.globalState.search.matching_phrase}
+            {" " + this.props.globalState.search.matching_phrase.snippet}
           </div>
           <button
             id="next-page-button"
