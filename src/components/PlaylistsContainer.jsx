@@ -6,7 +6,6 @@ import BookmarkCard from './BookmarkCard'
 import {getPlaylist, getSong} from '../services/utils'
 import NewPlaylist from '../assets/NewPlaylistIcon.png'
 import CreatePlaylist from './CreatePlaylist'
-import MusicSymbol from '../assets/music-symbol.png'
 export default class PlaylistsContainer extends React.Component {
 
     state = {
