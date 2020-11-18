@@ -26,11 +26,14 @@ export default class PlaylistsContainer extends React.Component {
         this.renderPlaylists()
     }
 
-    setFeatured = (id)=>{
-        getPlaylist(id)
-        .then((r)=>{
-            this.setState({featured_bookmarks: r.playlist.bookmarks, featured_title: r.playlist.title})
-        })
+    setFeatured = (e, bookmarks)=>{
+        e.preventDefault()
+        console.log('featuring', )
+        this.setState({featured_bookmarks: bookmarks})
+        // getPlaylist(id)
+        // .then((r)=>{
+        //     this.setState({featured_bookmarks: r.playlist.bookmarks, featured_title: r.playlist.title})
+        // })
     }
 
     renderPlaylists = ()=>{
@@ -86,7 +89,11 @@ export default class PlaylistsContainer extends React.Component {
 
     render(){
         const playlists = this.props.globalState.user.playlists.map((playlist)=>{
-            return <PlaylistCard playlist = {playlist}/>
+            return (
+                <div onClick = {(e)=>this.setFeatured(e, playlist.bookmarks)}>
+            <PlaylistCard playlist = {playlist}/>
+            </div>
+            )
         })
         const customStyles = {
             content : {
@@ -102,7 +109,7 @@ export default class PlaylistsContainer extends React.Component {
         return (
 
             <div>
-                <div id = "new-playlist" onClick = {this.toggleModal}>
+                <div id = "new-playlist" onClick = {this.toggleModal} class = "in-line-playlist">
                     <img src = {NewPlaylist} height = '100' width = '100'/>
                     <text>new playlist...</text>
                 </div>
@@ -119,14 +126,13 @@ export default class PlaylistsContainer extends React.Component {
                 </Modal>
                     <div id = "featued-container">
                  <h1>{this.state.featured_title}</h1>
-                {/* { */}
+                {
                     
-                {/* // this.state.featured_bookmarks ? 
-                // this.state.featured_bookmarks.map((bookmark) =>
-                // <BookmarkCard bookmark = {bookmark}/>, console.log(this.state))
-                //  : */}
-                {/* null
-                } */}
+                this.state.featured_bookmarks ? 
+                this.state.featured_bookmarks.map((bookmark) =>
+                <BookmarkCard bookmark = {bookmark}/>, console.log(this.state))
+                :
+                null }
                 </div>
             </div>
         )

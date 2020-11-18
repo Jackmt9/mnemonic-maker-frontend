@@ -120,3 +120,12 @@ nav{
     height: '40px';
     width: '40px';
 }
+#playlist-image{
+  display: block;
+}
+
+.in-line-playlist{
+  vertical-align: top;
+  display: inline-block;
+  text-align: center;
+}
