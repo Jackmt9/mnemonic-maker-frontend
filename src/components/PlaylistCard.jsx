@@ -9,10 +9,11 @@ import '../App.css'
 export default class PlaylistCard extends React.Component {
 
     renderImage = ()=>{
+        const image =  document.getElementById('playlist-image')
          if(this.props.playlist.bookmarks && this.props.playlist.bookmarks.length > 0){
             getSong(this.props.playlist.bookmarks[0].song_id)
             .then((song)=>{
-                document.getElementById('playlist-image').src = song.image
+              image.src = song.image
         })
         }
     }
@@ -21,9 +22,9 @@ export default class PlaylistCard extends React.Component {
        this.renderImage()
     }
 
-    componentDidUpdate = ()=>{
-        this.renderImage()
-    }
+    // componentDidUpdate = ()=>{
+    //     this.renderImage()
+    // }
 
     render(){
         return(

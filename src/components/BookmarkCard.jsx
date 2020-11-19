@@ -7,20 +7,17 @@ export default class BookmarkCard extends React.Component {
     state = {
         song: null,
         showInputPhrase: false, 
-        youtube_id: null
     }
 
     componentDidMount = ()=>{
-        console.log('bookmark mounting')
         getSong(this.props.bookmark.song_id)
         .then((song)=>this.setState({song}))
-        // set youtube id too!
     }
 
     styles = {
         whole_card: {
             justifyContent: 'flex-start',
-            backgroundColor: '#61dafb'
+            backgroundColor: '#37C1A8'
         },
         card_image: {
         height: 40,
@@ -44,10 +41,9 @@ export default class BookmarkCard extends React.Component {
             </Card.Img>
             <iframe
             title="youtube-vid"
-            width="120"
-            height="80"
+            width="200"
             className="youtube-frame"
-            src={`https://www.youtube.com/embed/${this.state.youtube_id}`}
+            src={`https://www.youtube.com/embed/${this.props.bookmark.youtube_id}`}
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"/>                 
             <Card.Body style = {this.styles.card_body}>

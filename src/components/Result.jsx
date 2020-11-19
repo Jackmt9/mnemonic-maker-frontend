@@ -95,10 +95,10 @@ export default class Result extends React.Component {
               Close
             </button>
         </Modal>
-            <p onClick={this.toggleSave}
-              id="star-saver"
+            <p onClick={this.toggleModal}
+              id = "add-song"
               className="query-summary">
-              {this.state.saved ? "★" : "☆"}
+              {this.state.saved ? "✓" : "+"}
             </p>
             
             <div id="song-image-container" className= "query-summary">
@@ -107,9 +107,6 @@ export default class Result extends React.Component {
             <a href={this.props.globalState.search.song.url} >
               {this.props.globalState.search.song.full_title}</a>
           <div id="input-phrase-match" className="query-summary">
-              <button id = "add-song" onClick = {this.toggleModal}>
-              + Add to playlist
-            </button>
             Your Input:
             {"  " + this.props.globalState.search.input_phrase}
             <br />

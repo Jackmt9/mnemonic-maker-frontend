@@ -22,7 +22,7 @@ export default class PlaylistsContainer extends React.Component {
 
     reRenderPlaylists = ()=>{
         console.log('re-rendering playlists')
-        document.getElementById('playlist-card-container').innerHTML = ''
+        document.getElementsByClassName('playlist-card-container')[0].innerHTML = ''
         this.renderPlaylists()
     }
 
@@ -108,12 +108,12 @@ export default class PlaylistsContainer extends React.Component {
 
         return (
 
-            <div>
-                <div id = "new-playlist" onClick = {this.toggleModal} class = "in-line-playlist">
+            <div className = "white-text">
+                <div className = "in-line-playlist" onClick = {this.toggleModal} class = "in-line-playlist">
                     <img src = {NewPlaylist} height = '100' width = '100'/>
-                    <text>new playlist...</text>
+                    <p>new playlist...</p>
                 </div>
-                <div id = "playlist-card-container">
+                <div className = "playlist-card-container">
                 {playlists}
                 </div>
                 <Modal isOpen={this.state.showModal}
@@ -124,13 +124,13 @@ export default class PlaylistsContainer extends React.Component {
                     />
                     <button onClick = {this.toggleModal}>close</button>
                 </Modal>
-                    <div id = "featued-container">
+                    <div className = "featued-container">
                  <h1>{this.state.featured_title}</h1>
                 {
                     
                 this.state.featured_bookmarks ? 
                 this.state.featured_bookmarks.map((bookmark) =>
-                <BookmarkCard bookmark = {bookmark}/>, console.log(this.state))
+                <BookmarkCard bookmark = {bookmark} />)
                 :
                 null }
                 </div>

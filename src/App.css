@@ -129,3 +129,21 @@ nav{
   display: inline-block;
   text-align: center;
 }
+
+.playlist-card-container{
+  display: inline-flex;
+}
+html{
+  background-color: #282c34;
+}
+
+.white-text{
+  color: white;
+}
+.blue-text{
+  color: blue;
+}
+
+.featured-container{
+  background-color: #37C1A8
+}
