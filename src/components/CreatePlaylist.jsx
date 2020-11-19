@@ -1,5 +1,5 @@
 import React from 'react';
-import {createPlaylist} from '../services/utils'
+import {createPlaylist, stayLoggedIn} from '../services/utils'
 export default class CreatePlaylistForm extends React.Component{
 
     state = {
@@ -17,6 +17,11 @@ export default class CreatePlaylistForm extends React.Component{
         .then(()=>{
             this.props.toggleModal()
         })
+ 
+        // stayLoggedIn()
+        // .then(r => {
+        // this.props.mountUser(r)
+        // })
      }
 
      componentDidMount = ()=>{

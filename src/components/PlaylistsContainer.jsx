@@ -64,6 +64,7 @@ export default class PlaylistsContainer extends React.Component {
                     <CreatePlaylist 
                     toggleModal = {this.toggleModal}
                     renderPlaylists = {this.renderPlaylists}
+                    mountUser = {this.props.mountUser}
                     />
                     <button onClick = {this.toggleModal}>close</button>
                 </Modal>
