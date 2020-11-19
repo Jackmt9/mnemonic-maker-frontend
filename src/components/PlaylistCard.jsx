@@ -1,15 +1,12 @@
 import React from 'react';
-import {Card} from 'react-bootstrap'
-import {getPlaylist, getSong} from '../services/utils'
-import BookmarkCard from './BookmarkCard'
-import { CardDeck } from 'react-bootstrap';
+import {getSong} from '../services/utils'
 import MusicSymbol from '../assets/music-symbol.png'
 import '../App.css'
 
 export default class PlaylistCard extends React.Component {
 
     renderImage = ()=>{
-        const image =  document.getElementById('playlist-image')
+        const image =  document.getElementById(this.props.playlist.id)
          if(this.props.playlist.bookmarks && this.props.playlist.bookmarks.length > 0){
             getSong(this.props.playlist.bookmarks[0].song_id)
             .then((song)=>{
@@ -22,14 +19,10 @@ export default class PlaylistCard extends React.Component {
        this.renderImage()
     }
 
-    // componentDidUpdate = ()=>{
-    //     this.renderImage()
-    // }
-
     render(){
         return(
             <div class = "in-line-playlist"  >
-                <img id = "playlist-image" src = {MusicSymbol} style = {{height: 100, width: 100}}/>
+                <img class = "playlist-image" id={this.props.playlist.id} src = {MusicSymbol} style = {{height: 100, width: 100}}/>
                 <p >{this.props.playlist.title}</p>
             </div>
         
