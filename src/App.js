@@ -42,7 +42,7 @@ class App extends React.Component {
   }
 
   renderPlaylists = () => {
-    return <Playlists globalState={this.props.globalState} />
+    return <Playlists globalState={this.props.globalState} stayLoggedIn = {stayLoggedIn} mountUser = {this.props.mountUser}/>
   }
 
   renderPlaylist = (id) => {

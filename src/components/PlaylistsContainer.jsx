@@ -13,8 +13,16 @@ export default class PlaylistsContainer extends React.Component {
         featured_bookmarks: null,
         showModal: false
     }
+
+    componentWillMount = () => {
+        this.props.stayLoggedIn()
+        .then(r => {
+          this.props.mountUser(r)
+        })
+    }
+
     componentDidMount = ()=>{
-        console.log("global state playlist container",this.props.globalState)
+        // console.log("global state playlist container",this.props.globalState)
          if(this.props.globalState.user.id){ 
         this.renderPlaylists()
          }

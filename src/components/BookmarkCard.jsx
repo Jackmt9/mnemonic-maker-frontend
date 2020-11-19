@@ -9,7 +9,7 @@ export default class BookmarkCard extends React.Component {
         showInputPhrase: false, 
     }
 
-    componentDidMount = ()=>{
+    componentWillMount = ()=>{
         getSong(this.props.bookmark.song_id)
         .then((song)=>this.setState({song}))
     }
