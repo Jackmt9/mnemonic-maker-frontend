@@ -11,17 +11,11 @@ export default class CreatePlaylistForm extends React.Component{
              [target.name]: target.value
          })
      }
-     handleSubmit = (evt) => {
-         evt.preventDefault()
+     handleSubmit = () => {
         createPlaylist(this.state)
         .then(()=>{
             this.props.toggleModal()
         })
- 
-        // stayLoggedIn()
-        // .then(r => {
-        // this.props.mountUser(r)
-        // })
      }
 
      componentDidMount = ()=>{

@@ -11,7 +11,8 @@ export default class PlaylistsContainer extends React.Component {
     state = {
         featured_title: null,
         featured_bookmarks: null,
-        showModal: false
+        showModal: false,
+        song: null
     }
 
     componentWillMount = () => {
@@ -26,18 +27,40 @@ export default class PlaylistsContainer extends React.Component {
         this.setState({featured_bookmarks: bookmarks})
     }
 
-     toggleModal = ()=>{
-         this.setState({showModal: !this.state.showModal})
-     }
+        toggleModal = ()=>{
+            this.setState({showModal: !this.state.showModal})
+        }
+
+        getSongA = (id) => {
+            
+            getSong(id)
+            .then((song)=> {
+                this.setState({song: song})
+                debugger
+            })
+            // return $song
+        }
 
     render(){
+        let bookmarks = null
+        if (this.state.featured_bookmarks) {
+            bookmarks = this.state.featured_bookmarks.map((bookmark) =>
+            {
+                this.getSongA(bookmark.song_id)
+                // song = this.state.song
+                
+                
+                return <BookmarkCard bookmark = {bookmark} song={this.state.song}/>
+            })
+        }
         const playlists = this.props.globalState.user.playlists.map((playlist)=>{
             return (
                 <div onClick = {(e)=>this.setFeatured(e, playlist.bookmarks)}>
-            <PlaylistCard playlist = {playlist} key={playlist.id}/>
-            </div>
+                    <PlaylistCard playlist = {playlist} key={playlist.id}/>
+                </div>
             )
         })
+
         const customStyles = {
             content : {
                 top                   : '50%',
@@ -60,7 +83,7 @@ export default class PlaylistsContainer extends React.Component {
                 {playlists}
                 </div>
                 <Modal isOpen={this.state.showModal}
-                        style = {customStyles}>
+                        style = {customStyles} onRequestClose={this.toggleModal}>
                     <CreatePlaylist 
                     toggleModal = {this.toggleModal}
                     renderPlaylists = {this.renderPlaylists}
@@ -70,13 +93,14 @@ export default class PlaylistsContainer extends React.Component {
                 </Modal>
                     <div className = "featued-container">
                  <h1>{this.state.featured_title}</h1>
-                {
+                {/* {
                     
                 this.state.featured_bookmarks ? 
                 this.state.featured_bookmarks.map((bookmark) =>
                 <BookmarkCard bookmark = {bookmark} />)
                 :
-                null }
+                null } */}
+                {bookmarks}
                 </div>
             </div>
         )

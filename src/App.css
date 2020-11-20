@@ -132,6 +132,7 @@ nav{
 
 .playlist-card-container{
   display: inline-flex;
+  width: 100%;
 }
 html{
   background-color: #282c34;
@@ -146,4 +147,16 @@ html{
 
 .featured-container{
   background-color: #37C1A8
+}
+
+#add-song {
+  font-size: 60px;
+}
+
+.playlist-image {
+  margin: 2px;
+}
+
+.card {
+  margin: 15px;
 }
