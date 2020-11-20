@@ -1,18 +1,25 @@
 import React, {button} from 'react';
 import Card from 'react-bootstrap/Card'
-import {getSong} from '../services/utils'
+import {getSong, deleteBookmark} from '../services/utils'
 
 export default class BookmarkCard extends React.Component {
 
     state = {
-        // song: null,
+        songTitle: null,
+        song: null,
         showInputPhrase: false, 
     }
 
-    // componentWillMount = ()=>{
-    //     getSong(this.props.bookmark.song_id)
-    //     .then((song)=>this.setState({song}))
-    // }
+
+    componentWillMount = ()=>{
+        getSong(this.props.bookmark.song_id)
+        .then((song)=>{
+            this.setState({songTitle: song.title})
+        })
+        .then(()=>{
+            this.setState({song: true})
+        })
+    }
 
     styles = {
         whole_card: {
@@ -36,8 +43,8 @@ export default class BookmarkCard extends React.Component {
             <div id="bookmark" style = {this.styles.whole_card}>
               
                 <Card >
-                <Card.Img src = {this.props.song.image} style = {this.styles.card_image}>
-            </Card.Img>
+                {/* <Card.Img src = {this.props.song.image} style = {this.styles.card_image}> */}
+            {/* </Card.Img> */}
             <iframe
             title="youtube-vid"
             width="200"
@@ -47,13 +54,16 @@ export default class BookmarkCard extends React.Component {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"/>                 
             <Card.Body style = {this.styles.card_body}>
                 <Card.Text>matching phrase: {this.props.bookmark.matching_phrase}</Card.Text>
-                <Card.Text>song name: {this.props.song.title}</Card.Text>
+                <Card.Text>song name: {this.state.songTitle}</Card.Text>
                 <button onClick = {()=>this.setState({showInputPhrase: !this.state.showInputPhrase})}>show my phrase</button>
                 {this.state.showInputPhrase ?
                 <Card.Text>input phrase {this.props.bookmark.input_phrase}</Card.Text>
                 :
                 null}
                 </Card.Body>
+                <button onClick = {()=> deleteBookmark(this.props.bookmark.id)}>
+                    🗑
+                </button>
                 </Card>
     
             </div>

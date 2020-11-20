@@ -108,3 +108,12 @@ export const createPlaylist = (playlist_params)=>{
   return r.json();
   });
 }
+
+export const deleteBookmark = (bookmark_id)=>{
+  return fetch(BACKEND + `bookmarks/${bookmark_id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: localStorage.token,
+    },
+  })
+}
