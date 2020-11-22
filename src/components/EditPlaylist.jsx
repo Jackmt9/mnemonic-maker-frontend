@@ -25,7 +25,7 @@ export default class CreatePlaylistForm extends React.Component{
      }
 
      componentDidMount = ()=>{
-         console.log(this.props.globalState)
+         document.getElementById("edit-playlist").scrollIntoView({behavior: 'smooth'})
          
      }
 
@@ -42,7 +42,7 @@ export default class CreatePlaylistForm extends React.Component{
     render(){
         return (
             <>
-            <form onSubmit = {(e)=>this.handleSubmit(e)}>
+            <form onSubmit = {(e)=>this.handleSubmit(e)} id = "edit-playlist">
         <h1>Edit "{this.props.playlist.title}"</h1>
                 <button onClick = {this.handleDelte}>🗑</button>
               <label >title:</label>

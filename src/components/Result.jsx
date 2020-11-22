@@ -18,6 +18,8 @@ export default class Result extends React.Component {
     this.appendLyrics()
     let result = document.getElementsByClassName("results")[0]
     result.scrollIntoView({behavior: 'smooth'})
+    
+
   }
 
   componentDidUpdate = () => {
@@ -36,7 +38,7 @@ export default class Result extends React.Component {
 
   backToSearch = ()=>{
     // this.props.scrollSearchIntoView()
-    this.setState({scrolled: true})
+    this.setState({scrolled: !this.state.scrolled})
  
      window.scroll({
       top: 0,
@@ -137,7 +139,9 @@ export default class Result extends React.Component {
             allowFullScreen
             /> 
             <button onClick = {this.backToSearch} id = 'back-to-search'>
-              Back to search ⬆
+              
+              <text>Back to search ⬆</text>
+              
             </button>
           <div id="song"></div> 
         </div>

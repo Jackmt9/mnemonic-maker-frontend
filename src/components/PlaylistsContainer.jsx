@@ -7,6 +7,7 @@ import {getPlaylist, getSong} from '../services/utils'
 import NewPlaylist from '../assets/NewPlaylistIcon.png'
 import CreatePlaylist from './CreatePlaylist'
 import EditPlaylist from './EditPlaylist.jsx';
+
 export default class PlaylistsContainer extends React.Component {
 
     state = {
@@ -121,7 +122,7 @@ export default class PlaylistsContainer extends React.Component {
                     
                     { this.state.featuredPlaylist.bookmarks ?
               this.state.featuredPlaylist.bookmarks.map((bookmark) => {
-                    return <BookmarkCard bookmark = {bookmark} song = {bookmark.song_id}
+                    return <BookmarkCard bookmark = {bookmark}
                         
                     />
             })

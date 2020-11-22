@@ -160,3 +160,14 @@ html{
 .card {
   margin: 15px;
 }
+
+.error-image{
+  size: 400px;
+  width: 400px
+}
+
+#no-results-div{
+  /* position: absolute; */
+  /* top: -40; */
+  /* left: 100; */
+}

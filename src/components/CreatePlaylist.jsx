@@ -1,5 +1,5 @@
 import React from 'react';
-import {createPlaylist, stayLoggedIn} from '../services/utils'
+import {createPlaylist, stayLoggedIn, saveBookmark} from '../services/utils'
 export default class CreatePlaylistForm extends React.Component{
 
     state = {
@@ -11,26 +11,32 @@ export default class CreatePlaylistForm extends React.Component{
              [target.name]: target.value
          })
      }
-     handleSubmit = () => {
+     handleSubmit = (e) => {
+         e.preventDefault()
         createPlaylist(this.state)
-        .then(()=>{
-            this.props.toggleModal()
-        })
-        .then(()=>{
-            console.log('yo')
-            // this.props.mountUser()
+        .then((playlist)=>{
+            if(this.props.addNewBookmark){
+                saveBookmark(playlist.id, this.props.globalState.search.song.id, this.props.globalState.search.input_phrase, this.props.globalState.search.matching_phrase, this.props.globalState.search.song.youtube_id)
+                .then(()=>{
+                    this.props.toggleModal()
+                })
+            }
+            else {
 
+                this.props.toggleModal()
+            }
         })
      }
 
      componentDidMount = ()=>{
-         console.log(this.props.globalState)
+         console.log(this.props.globalState, "other props: ", this.props)
+
      }
 
     render(){
         return (
             <>
-            <form onSubmit = {this.handleSubmit}>
+            <form onSubmit = {(e)=>this.handleSubmit(e)}>
                 <h1>New Playlist</h1>
               <label >title:</label>
               <input type="text" autoComplete="off" name="title" value={this.state.title} onChange={this.handleChange}/>

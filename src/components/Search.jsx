@@ -2,6 +2,7 @@ import React from "react";
 import { fetchMnemonic } from '../services/utils'
 import SearchBar from './SearchBar/SearchBar'
 import Result from "./Result";
+import NoResults from './NoResults'
 
 export default class Search extends React.Component {
   state = {
@@ -27,8 +28,7 @@ export default class Search extends React.Component {
       console.log(r)
       if (r.error) {
         this.setState({ error: r.error });
-        let errorDiv = document.getElementById("error-div");
-        errorDiv.innerText = r.error;
+        document.getElementById('error-div').scrollIntoView()
       } else {
         this.setState({
           error: null,
@@ -49,15 +49,17 @@ export default class Search extends React.Component {
   render() {
     return (
       <div className="home">
-        <div id= 'search-bar'>
+        <div id= 'search-bar' className = "search-error-inline">
         <SearchBar handleSubmit={this.handleSubmit} />
         </div>
-        {this.state.error ? <div id="error-div"></div> : null}
+        <div id = "error-div">
+        {this.state.error ? < NoResults/> : null}
+        </div>
         <div id="logo-container"></div>
         <div id="full-body-div">
           {
-          this.props.globalState.search.song.full_title ? 
-          <Result handleSubmit={this.handleSubmit} globalState={this.props.globalState}/>
+            this.props.globalState.search.song.title ?  
+                <Result handleSubmit={this.handleSubmit} globalState={this.props.globalState}/>
           : 
           null
           }
