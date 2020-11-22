@@ -16,6 +16,11 @@ export default class CreatePlaylistForm extends React.Component{
         .then(()=>{
             this.props.toggleModal()
         })
+        .then(()=>{
+            console.log('yo')
+            // this.props.mountUser()
+
+        })
      }
 
      componentDidMount = ()=>{

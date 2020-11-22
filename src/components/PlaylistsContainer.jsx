@@ -101,6 +101,7 @@ export default class PlaylistsContainer extends React.Component {
                             <EditPlaylist
                              toggleEditPlaylistForm = {this.toggleEditPlaylistForm} 
                             playlist = {this.state.featuredPlaylist}
+                            mountUser = {this.props.mountUser}
                             />
                         </>
                         :

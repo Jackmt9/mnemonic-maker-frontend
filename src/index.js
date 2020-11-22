@@ -35,8 +35,7 @@ let initialState = {
 
 // RETURN VALUE OF REDUCER BECOMES THE NEW STATE
 let reducer = (state = initialState, action) => {
-
-  switch (action.type) {
+  switch (action.type) {
     case 'MOUNT_USER':
       let user = action.payload.user
       return {
