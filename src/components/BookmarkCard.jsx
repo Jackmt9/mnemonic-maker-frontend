@@ -12,13 +12,17 @@ export default class BookmarkCard extends React.Component {
 
 
     componentWillMount = ()=>{
-        getSong(this.props.bookmark.song_id)
-        .then((song)=>{
-            this.setState({songTitle: song.title})
-        })
-        .then(()=>{
-            this.setState({song: true})
-        })
+        // getSong(this.props.bookmark.song_id)
+        // .then((song)=>{
+        //     document.getElementById("bookmark-song-title").innerText = song.title
+        // })
+        // getSong(this.props.bookmark.song_id)
+        // .then((song)=>{
+        //     this.setState({songTitle: song.title})
+        // })
+        // .then(()=>{
+        //     this.setState({song: true})
+        // })
     }
 
     styles = {
@@ -54,10 +58,9 @@ export default class BookmarkCard extends React.Component {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"/>                 
             <Card.Body style = {this.styles.card_body}>
                 <Card.Text>matching phrase: {this.props.bookmark.matching_phrase}</Card.Text>
-                <Card.Text>song name: {this.state.songTitle}</Card.Text>
-                <button onClick = {()=>this.setState({showInputPhrase: !this.state.showInputPhrase})}>show my phrase</button>
+        <button onClick = {()=>this.setState({showInputPhrase: !this.state.showInputPhrase})}>{this.state.showInputPhrase ? <text>hide my phrase</text>: <text>show my phrase</text>}</button>
                 {this.state.showInputPhrase ?
-                <Card.Text>input phrase {this.props.bookmark.input_phrase}</Card.Text>
+                <Card.Text>input phrase: {this.props.bookmark.input_phrase}</Card.Text>
                 :
                 null}
                 </Card.Body>

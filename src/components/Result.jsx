@@ -88,19 +88,23 @@ export default class Result extends React.Component {
         scrollable = {true}
         >
           
-          <AddToPlaylist globalState = {this.props.globalState}
+          <AddToPlaylist 
+            globalState = {this.props.globalState}
             toggleModal={this.toggleModal}
           />
             <button onClick = {this.toggleModal}>
               Close
             </button>
         </Modal>
+        {localStorage.token ? 
             <p onClick={this.toggleModal}
               id = "add-song"
               className="query-summary">
               {this.state.saved ? "✓" : "+"}
             </p>
-            
+            :
+            <p>Register to add this bookmark to a playlist!</p>
+            }
             <div id="song-image-container" className= "query-summary">
               <img width = '40' height = '40' src = {this.props.globalState.search.song.image} alt = {this.props.globalState.search.song.full_title}/>
           </div>

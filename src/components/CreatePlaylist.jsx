@@ -20,7 +20,6 @@ export default class CreatePlaylistForm extends React.Component{
 
      componentDidMount = ()=>{
          console.log(this.props.globalState)
-         
      }
 
     render(){

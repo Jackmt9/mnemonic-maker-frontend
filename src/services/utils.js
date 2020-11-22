@@ -109,6 +109,22 @@ export const createPlaylist = (playlist_params)=>{
   });
 }
 
+export const editPlaylist = (playlist_params, playlist_id) =>{
+  return fetch(BACKEND + `playlists/${playlist_id}`, {
+    method: "PUT",
+    headers: {
+      Authorization: localStorage.token,
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      playlist_id: playlist_id,
+      playlist_params: playlist_params}),
+  }).then((response) => {
+    console.log(`updated playlist with a status of${response.status}`);
+    return response.json()
+  });
+}
+
 export const deleteBookmark = (bookmark_id)=>{
   return fetch(BACKEND + `bookmarks/${bookmark_id}`, {
     method: "DELETE",
@@ -116,4 +132,13 @@ export const deleteBookmark = (bookmark_id)=>{
       Authorization: localStorage.token,
     },
   })
+}
+
+export const deletePlaylist = (playlist_id)=>{
+  return fetch(BACKEND + `playlists/${playlist_id}`, {
+    method: 'DELETE',
+  headers: {
+    Authorization: localStorage.token
+  }
+})
 }

@@ -6,13 +6,16 @@ import BookmarkCard from './BookmarkCard'
 import {getPlaylist, getSong} from '../services/utils'
 import NewPlaylist from '../assets/NewPlaylistIcon.png'
 import CreatePlaylist from './CreatePlaylist'
+import EditPlaylist from './EditPlaylist.jsx';
 export default class PlaylistsContainer extends React.Component {
 
     state = {
-        featured_title: null,
-        featured_bookmarks: null,
+        editPlaylistForm: false,
+        showMore: false,
+        featuredPlaylist: null,
         showModal: false,
-        song: null
+        song: null,
+       
     }
 
     componentWillMount = () => {
@@ -21,44 +24,38 @@ export default class PlaylistsContainer extends React.Component {
           this.props.mountUser(r)
         })
     }
+    handleBookmark =(bookmark)=>{
+        console.log('im a bookmark: ', bookmark)
+        getSong(bookmark.song_id)
+        .then((song)=>{
+            this.setState({song})
+        })
+    }
 
-    setFeatured = (e, bookmarks)=>{
+
+    setFeatured = (e, playlist)=>{
         e.preventDefault()
-        this.setState({featured_bookmarks: bookmarks})
+        console.log("playlist: ", playlist)
+        this.setState({ featuredPlaylist: playlist})
     }
 
         toggleModal = ()=>{
             this.setState({showModal: !this.state.showModal})
         }
 
-        // getSongThroughBookmark = (id) => {
-        //     getSong(id)
-        //     .then((song)=> {
-        //         this.setState({song: song})
-        //         // debugger
-        //     })
-        //     // return $song
-        //     console.log('yoooo')
-        // }
-
-    render(){
-        let bookmarks = null
-        if (this.state.featured_bookmarks) {
-            bookmarks = this.state.featured_bookmarks.map((bookmark) =>
-            {
-                // song = this.state.song
-                
-                
-                // getSong(bookmark.song_id)
-                // .then((song)=>{
-                //     this.setState({song})
-                // })
-                    return <BookmarkCard bookmark = {bookmark}/>
-            })
+        toggleEditPlaylistForm = ()=>{
+            this.setState({editPlaylistForm: !this.state.editPlaylistForm})
         }
+
+        playlistShowMore = ()=>{
+            this.setState({showMore: !this.state.showMore})
+        }
+
+        render(){
+            let bookmarkCards = null
         const playlists = this.props.globalState.user.playlists.map((playlist)=>{
             return (
-                <div onClick = {(e)=>this.setFeatured(e, playlist.bookmarks)}>
+                <div onClick = {(e)=>this.setFeatured(e, playlist)}>
                     <PlaylistCard playlist = {playlist} key={playlist.id}/>
                 </div>
             )
@@ -94,17 +91,50 @@ export default class PlaylistsContainer extends React.Component {
                     />
                     <button onClick = {this.toggleModal}>close</button>
                 </Modal>
+                    {this.state.featuredPlaylist ? 
                     <div className = "featued-container">
-                 <h1>{this.state.featured_title}</h1>
-                {/* {
+                    <h1>{this.state.featuredPlaylist.title}</h1>
+                    {this.state.showMore ? 
+                        <div>
+                        {this.state.editPlaylistForm ? 
+                            <>
+                            <EditPlaylist
+                             toggleEditPlaylistForm = {this.toggleEditPlaylistForm} 
+                            playlist = {this.state.featuredPlaylist}
+                            />
+                        </>
+                        :
+                        <>
+                        <button onClick = {this.toggleEditPlaylistForm}>Edit Playlist</button>
+                         <p>title: {this.state.featuredPlaylist.title}</p>
+                        <p>description: {this.state.featuredPlaylist.description}</p>
+                        <p>bookmarks: {this.state.featuredPlaylist.bookmarks.length}</p>
+                        <button onClick = {this.playlistShowMore}>hide</button>
+                        </>}
+                        
+                        </div>
+                    :
+                        <button onClick = {this.playlistShowMore}>more...</button>
+                    }
+                
                     
-                this.state.featured_bookmarks ? 
-                this.state.featured_bookmarks.map((bookmark) =>
-                <BookmarkCard bookmark = {bookmark} />)
-                :
-                null } */}
-                {bookmarks}
+                    { this.state.featuredPlaylist.bookmarks ?
+              this.state.featuredPlaylist.bookmarks.map((bookmark) => {
+                    return <BookmarkCard bookmark = {bookmark} song = {bookmark.song_id}
+                        
+                    />
+            })
+            :
+            null
+        } 
+                {/* {this.state.featuredPlaylist.bookmarks.map((bookmark) => */}
+                    {/* <BookmarkCard bookmark = {bookmark} />) */}
+                    {/* bookmarkCards */}
+                    {/* : */}
+                    {/* null} */}
                 </div>
+                 :
+                 null}
             </div>
         )
     }
