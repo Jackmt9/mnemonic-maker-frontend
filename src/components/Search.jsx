@@ -37,7 +37,6 @@ export default class Search extends React.Component {
           resultDisplayed: true,
         });
         this.props.handleSearch(r)
-        // document.getElementById("logo-container").innerHTML = "";
       }
     });
     e.preventDefault();
@@ -56,7 +55,6 @@ export default class Search extends React.Component {
         <div id = "error-div">
         {this.state.error ? < NoResults/> : null}
         </div>
-        {/* <div id="logo-container"></div> */}
         <div id="full-body-div">
           {
             this.props.globalState.search.song && this.props.globalState.search.song.title ?  

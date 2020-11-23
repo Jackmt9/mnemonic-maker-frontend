@@ -178,5 +178,16 @@ html{
 }
 
 .about {
-  color: white
+  color: white;
+  text-align: left;
+  padding: 30px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.creator{
+  margin-right: 20px;
 }
