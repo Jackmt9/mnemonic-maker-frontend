@@ -29,6 +29,7 @@ export default class Search extends React.Component {
       if (r.error) {
         this.setState({ error: r.error });
         document.getElementById('error-div').scrollIntoView()
+        this.props.handleSearch(r)
       } else {
         this.setState({
           error: null,
@@ -58,10 +59,10 @@ export default class Search extends React.Component {
         <div id="logo-container"></div>
         <div id="full-body-div">
           {
-            this.props.globalState.search.song.title ?  
-                <Result handleSubmit={this.handleSubmit} globalState={this.props.globalState}/>
-          : 
-          null
+            this.props.globalState.search.song && this.props.globalState.search.song.title ?  
+            <Result handleSubmit={this.handleSubmit} globalState={this.props.globalState}/>
+            :
+            null
           }
         </div>
       </div>
