@@ -51,7 +51,7 @@ export default class Search extends React.Component {
     return (
       <div className="home">
         <div id= 'search-bar' className = "search-error-inline">
-        <SearchBar handleSubmit={this.handleSubmit} />
+        <SearchBar artists={this.props.artists} handleSubmit={this.handleSubmit} />
         </div>
         <div id = "error-div">
         {this.state.error ? < NoResults/> : null}

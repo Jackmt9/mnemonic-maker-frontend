@@ -6,12 +6,14 @@ export default class Home extends React.Component {
     artist: "",
     order: true,
   };
+
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
   handleCheckToggle = ()=>{
     this.setState({order: !this.state.order})
   }
+
   render() {
     return (
       <form
@@ -38,14 +40,25 @@ export default class Home extends React.Component {
         <br />
         <label>
           By Specific Artist:
-          <input
-            placeholder="any"
+          {/* <input
+           placeholder="any"
             type="text"
             name="artist"
             value={this.state.artist}
             onChange={this.handleChange}
-          />
+          /> */}
         </label>
+          <select name="artist" id="artist" onChange={this.handleChange}>
+            <option value="any">Any</option>
+            {
+            this.props.artists ? 
+            this.props.artists.map(artist => {
+              return <option value={artist.id}>{artist.name}</option>
+            })
+            :
+            null
+            }
+          </select>
         Order Matters:
         <input
           name="isGoing"

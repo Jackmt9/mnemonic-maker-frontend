@@ -9,11 +9,14 @@ import About from './components/About'
 import './App.css';
 import Search from './components/Search'
 import {Switch, Route, withRouter} from 'react-router-dom'
-import {stayLoggedIn} from './services/utils'
+import {getAllArtists, stayLoggedIn} from './services/utils'
 import {connect} from 'react-redux'
 
 class App extends React.Component {
 
+  state = {
+    artists: null
+  }
   componentDidMount = () => {
     if(localStorage.token){
       stayLoggedIn()
@@ -23,6 +26,10 @@ class App extends React.Component {
         this.props.mountUser(r)
       })
     }
+    getAllArtists()
+    .then(r => 
+      this.setState({artists: r})
+    )
   }
 
   renderLogin = () => {
@@ -34,7 +41,7 @@ class App extends React.Component {
   }
 
   renderSearch = () => {
-    return <Search handleSearch={(r) => this.props.mountSearch(r)} globalState={this.props.globalState}/>
+    return <Search artists={this.state.artists} handleSearch={(r) => this.props.mountSearch(r)} globalState={this.props.globalState}/>
   }
 
   renderRegister = () => {
