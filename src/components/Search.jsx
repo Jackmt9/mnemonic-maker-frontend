@@ -58,7 +58,9 @@ export default class Search extends React.Component {
         <div id="full-body-div">
           {
             this.props.globalState.search.song && this.props.globalState.search.song.title ?  
-            <Result handleSubmit={this.handleSubmit} globalState={this.props.globalState}/>
+            <Result handleSubmit={this.handleSubmit} globalState={this.props.globalState}
+            mountUser = {this.props.mountUser}
+            />
             :
             null
           }

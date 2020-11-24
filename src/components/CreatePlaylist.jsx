@@ -22,8 +22,15 @@ export default class CreatePlaylistForm extends React.Component{
                 })
             }
             else {
-
                 this.props.toggleModal()
+            }
+        })
+        .then(()=>{
+            if(localStorage.token){
+                stayLoggedIn()
+                .then(r => {   
+                    this.props.mountUser(r)
+                })
             }
         })
      }

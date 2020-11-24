@@ -132,7 +132,7 @@ export const deleteBookmark = (bookmark_id)=>{
       Authorization: localStorage.token,
     },
   })
-  .then(r => r.json())
+  // .then(r => r.json())
 }
 
 export const deletePlaylist = (playlist_id)=>{
@@ -142,7 +142,7 @@ export const deletePlaylist = (playlist_id)=>{
       Authorization: localStorage.token
     }
   })
-  .then(r => r.json())
+  // .then(r => r.json())
 }
 
 export const getAllArtists = () => {

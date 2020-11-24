@@ -41,7 +41,7 @@ class App extends React.Component {
   }
 
   renderSearch = () => {
-    return <Search artists={this.state.artists} handleSearch={(r) => this.props.mountSearch(r)} globalState={this.props.globalState}/>
+    return <Search artists={this.state.artists} handleSearch={(r) => this.props.mountSearch(r)} globalState={this.props.globalState} mountUser = {this.props.mountUser}/>
   }
 
   renderRegister = () => {

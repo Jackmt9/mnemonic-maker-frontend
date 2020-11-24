@@ -91,6 +91,7 @@ export default class Result extends React.Component {
         >
           
           <AddToPlaylist 
+          mountUser = {this.props.mountUser}
             globalState = {this.props.globalState}
             toggleModal={this.toggleModal}
           />

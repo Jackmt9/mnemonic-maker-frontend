@@ -35,6 +35,7 @@ render(){
            </div>
            :
            <CreatePlaylist
+           mountUser = {this.props.mountUser}
                 globalState = {this.props.globalState}
                 addNewBookmark
                 toggleModal = {this.props.toggleModal}
