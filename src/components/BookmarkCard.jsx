@@ -26,6 +26,13 @@ export default class BookmarkCard extends React.Component {
         }
     }
 
+    handleDelete = (id)=>{
+        deleteBookmark(id)
+        .then(()=>{
+            this.props.handleBookmarkDelete(id)
+        })
+    }
+
     render(){
         return(
             <div id="bookmark" style = {this.styles.whole_card}>
@@ -47,7 +54,7 @@ export default class BookmarkCard extends React.Component {
                 :
                 null}
                 </Card.Body>
-                <button onClick = {()=> deleteBookmark(this.props.bookmark.id)}>
+                <button onClick = {()=> this.handleDelete(this.props.bookmark.id)}>
                     🗑
                 </button>
                 </Card>

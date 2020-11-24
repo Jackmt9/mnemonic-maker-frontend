@@ -14,6 +14,7 @@ export default class PlaylistsContainer extends React.Component {
         editPlaylistForm: false,
         showMore: false,
         featuredPlaylist: null,
+        featuredBookmarks: null,
         showModal: false,
         song: null,
        
@@ -33,11 +34,15 @@ export default class PlaylistsContainer extends React.Component {
         })
     }
 
+    handleBookmarkDelete = (id)=>{
+        let survivingBookmarks = this.state.featuredBookmarks.filter(bookmark => bookmark.id !=id)
+        this.setState({featuredBookmarks: survivingBookmarks})
+    }
 
     setFeatured = (e, playlist)=>{
         e.preventDefault()
         console.log("playlist: ", playlist)
-        this.setState({ featuredPlaylist: playlist})
+        this.setState({ featuredPlaylist: playlist, featuredBookmarks: playlist.bookmarks})
     }
 
         toggleModal = ()=>{
@@ -120,9 +125,10 @@ export default class PlaylistsContainer extends React.Component {
                     }
                 
                     
-                    { this.state.featuredPlaylist.bookmarks ?
-              this.state.featuredPlaylist.bookmarks.map((bookmark) => {
+                    { this.state.featuredBookmarks ?
+              this.state.featuredBookmarks.map((bookmark) => {
                     return <BookmarkCard bookmark = {bookmark}
+                            handleBookmarkDelete = {this.handleBookmarkDelete}
                         
                     />
             })
