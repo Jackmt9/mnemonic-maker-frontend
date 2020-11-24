@@ -1,5 +1,5 @@
 import React from 'react';
-import {createPlaylist, getPlaylist, saveBookmark} from '../services/utils'
+import {createPlaylist, getPlaylist, saveBookmark, stayLoggedIn} from '../services/utils'
 import NewPlaylist from '../assets/NewPlaylistIcon.png'
 import MusicSymbol from '../assets/music-symbol.png'
 import PlaylistCard from './PlaylistCard'
@@ -9,6 +9,14 @@ export default class AddToPlaylist extends React.Component{
      addToPlaylist = (playlist_id)=>{
         saveBookmark(playlist_id, this.props.globalState.search.song.id, this.props.globalState.search.input_phrase, this.props.globalState.search.matching_phrase, this.props.globalState.search.song.youtube_id)
         .then(() => this.props.toggleModal())
+        .then(()=>{
+            if(localStorage.token){
+                stayLoggedIn()
+                .then(r => {   
+                    this.props.mountUser(r)
+                })
+            }
+        })
      }
      state = {
          NewPlaylist: false

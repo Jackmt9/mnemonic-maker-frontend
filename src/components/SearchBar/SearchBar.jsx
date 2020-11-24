@@ -40,13 +40,6 @@ export default class Home extends React.Component {
         <br />
         <label>
           By Specific Artist:
-          {/* <input
-           placeholder="any"
-            type="text"
-            name="artist"
-            value={this.state.artist}
-            onChange={this.handleChange}
-          /> */}
         </label>
           <select name="artist" id="artist" onChange={this.handleChange}>
             <option value="any">Any</option>
